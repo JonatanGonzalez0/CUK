@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, url_for, make_response
 from Datos.Usuario import Usuario
 from Datos.Receta import Receta
+from Datos.Post import Post
 
 app = Flask(__name__)
 app.secret_key = "IngenieriaUsacAdmin"
@@ -189,10 +190,15 @@ def modificarUser():
             return redirect(url_for("login")) 
      
 
-@app.route('/Inicio')
+@app.route('/Inicio',methods=['POST', 'GET'])
 def Inicio():
     if "user" in session:
         usuario = session["user"]
+        if request.method == 'POST':
+
+            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas) 
+        else:
+            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas) 
         return render_template('HomeLoged.html', usuario = usuario , recetas = recetas)  
     else:
         return redirect(url_for("login"))   
@@ -225,7 +231,9 @@ def RegistrarReceta():
         confirm = 'La receta se agrego correctamente'
         render_template('RegistrarReceta.html' , confirm = confirm)
         return Inicio()      
-    return render_template('RegistrarReceta.html', confirm = confirm )      
+    return render_template('RegistrarReceta.html', confirm = confirm )
+
+@app.route('/coment')          
 
 if __name__ == '__main__':
     app.run(threaded = True, port = 5000)
