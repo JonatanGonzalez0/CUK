@@ -89,7 +89,7 @@ def login():
     else:
         return render_template('Login.html', error = None)  
 
-@app.route('/Logout')
+@app.route('/Logout',methods = ['POST', 'GET'])
 def Logout():
     session.pop("user",None)
     return redirect(url_for("index"))           
@@ -124,7 +124,7 @@ def Forgot():
     confirm = None
     if request.method == 'POST':
         user = request.form['usuario']
-        if usuarioExistente(user):
+        if usuarioExistente(user) and user != "admin":
             error = None
             confirm = 'Su contrasena es : ' + buscarContra(user)
             return render_template('Forgot.html', confirm = confirm, error = error)        
@@ -141,7 +141,7 @@ def modificarUser():
     error = None
     if request.method=='POST':
         if "user" in session:
-            usuario = session["user"]  
+            usuario = session['user']  
             currentUser = usuario
     
             userMod  = request.form['usuario']
@@ -162,8 +162,10 @@ def modificarUser():
             else:
                 if usuarioExistente(userMod)==False:
                     
-                    currentUser = session["user"]
+                    currentUser = session['user']
                     deleteUsuario(currentUser)
+                    session.pop("user",None)
+                    
                     registroUsuario(nombreMod,apellidoMod,userMod,contrasenaMod,contrasena2Mod)
                     session['user'] = userMod
                     confirm = 'Se a modificado su usuario nuevo correctamente'
