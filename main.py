@@ -55,12 +55,13 @@ def index():
 
 @app.route('/Login', methods=['POST', 'GET'])
 def login():
-    
+    error = None
     if request.method == 'POST':
         usuario = request.form['username']
         contra = request.form['password']
         
         if validarLogin(usuario, contra) and usuario != "admin":
+            error = None
             usuario = request.form['username']
             session['user'] = usuario
             return redirect(url_for("Inicio"))
@@ -70,7 +71,7 @@ def login():
             return redirect(url_for("Dashboard"))
         else:
             error = 'Credenciales no validas, vuelva a intentarlo'
-            return redirect(url_for("login"))             
+            return render_template('Login.html', error=error)               
     return render_template('Login.html', error = None)  
 
 @app.route('/Logout')
@@ -79,8 +80,7 @@ def Logout():
     return render_template("Home.html", recetas = recetas)            
             
 @app.route('/Registro', methods=['POST', 'GET'])
-def SignUp():
-    
+def SignUp(): 
     if request.method == 'POST':
         #obtener valores del formulario
         usuario  = request.form['usuario']
@@ -93,13 +93,13 @@ def SignUp():
             registroUsuario(nombre,apellido,usuario,contrasena,contrasena2)
             error = None
             confirm = 'Se a registrado completamente'
-            return redirect(url_for("Registro"))
+            return render_template('Sign.html', confirm = confirm,error=None)
         else:
             confirm = None
             error = 'Ya existe el usuaio, intenta con otro'  
-            return redirect(url_for("Registro"))    
+            return render_template('Sign.html', confirm = confirm,error=error)         
     else:
-        return render_template('Sign.html',confirm = confirm,error=error)
+        return render_template('Sign.html',confirm = None,error=error)
         
 @app.route('/Recuperacion',methods=['POST', 'GET'])
 def Forgot():
