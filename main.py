@@ -14,9 +14,8 @@ recetas.append(recetaPrueba)
 
 #Funcion para validar login
 def validarLogin(user,password):
-    for usuario in usuarios:
-        if usuario.usuario == user and usuario.contrasena == password:
-            
+    for usuariox in usuarios:
+        if usuariox.usuario == user and usuariox.contrasena == password: 
             return True
     return False
 #Funcion verificar usuario
@@ -73,16 +72,16 @@ def index():
 def login():
     error = None
     if request.method == 'POST':
-        usuario = request.form['username']
+        user = request.form['username']
         contra = request.form['password']
         
-        if validarLogin(usuario, contra) and usuario != "admin":
+        if validarLogin(user, contra) and user != "admin":
             error = None
-            session['user'] = usuario
+            session['user'] = user
             return redirect(url_for("Inicio"))
-        elif validarLogin(usuario,contra) and usuario== "admin" :
+        elif validarLogin(user,contra) and user== "admin" :
             error = None
-            session['user'] =  usuario
+            session['user'] =  user
             return redirect(url_for("Dashboard"))
         else:
             error = 'Credenciales no validas, vuelva a intentarlo'
