@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
+    <title>Crear una cuenta</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/Forgot.css" th:href="@{/css/index_Sign.css}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="shortcut icon" href="../static/img/logo.ico">
+</head>
+
+<body>
+
+    <body>
+
+        <form method="POST">
+
+            <div class="container">
+                {% if confirm != None %}
+                <div class="w3-panel w3-green">
+                    <h2>Usuario encontrado!</h2>
+                    <p>{{confirm}}</p>
+                </div> {% endif %} {% if error != None %}
+                <div class="w3-panel w3-red">
+                    <h2>Error!</h2>
+                    <p>{{error}}</p>
+                </div>
+                {% endif %}
+
+                <h1 align="center">Recuperación de contraseña</h1>
+                <p align="center">Ingrese el nombre del usuario al que desea recuperar la contraseña</p>
+                <hr>
+                <label for="usuario"><b>Usuario</b></label>
+                <input type="text" placeholder="Ingresar Usuario" name="usuario" id="usuario" required>
+                <hr>
+                <button type="submit" class="forgotbtn">Recuperar</button>
+                <div class="col-12 login">
+                    <a href="/Login">Iniciar Sesion</a>
+                </div>
+
+
+            </div>
+        </form>
+
+
+    </body>
+</body>
+
+</html>

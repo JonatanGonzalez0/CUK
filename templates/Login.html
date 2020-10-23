@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
+
+    <title>
+        CUK Cocina Gourmet
+    </title>
+
+    <link rel="shortcut icon" href="../static/img/logo.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/Login.css" th:href="@{/css/index_Login.css}">
+
+</head>
+
+<body>
+
+    <div class="modal-dialog text-center">
+
+        <div class="col-sm-8 main-section">
+
+
+            <div class="modal-content">
+
+                <div class="col-12 user-img">
+                    <img src="../static/img/avatarLogin.png" th:src="@{/img/avatar.png}" />
+                </div>
+                <form class="col-12" method="POST">
+                    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
+
+                    <div class="form-group" id="user-group">
+                        <input type="text" id="username" placeholder="Nombre de usuario" name="username" />
+                    </div>
+
+                    <div class="form-group" id="contrasena-group">
+                        <input type="password" id="password" placeholder="Contraseña" name="password" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Ingresar </button>
+                </form>
+                <div class="col-12 forgot">
+                    <a href="Recuperacion">Olvido su contraseña?</a>
+                </div>
+                <div class="col-12 create">
+                    <a href="Registro">Crear una cuenta!</a>
+                </div>
+
+                {% if error != None %}
+                <div class="alert alert-danger" role="alert">
+                    <h3>!Error!</h3>
+                    <p>{{error}}</p>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
+</div>
+
+</div>
+</div>
+</body>
+
+</html>

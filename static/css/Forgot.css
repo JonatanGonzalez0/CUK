@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: url(../img/backgroundForgot.jpg) no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* Add padding to containers */
+
+.container {
+    margin-top: 15%;
+    margin-left: 17%;
+    padding: 0;
+    width: 60%;
+    font-size: 25px;
+}
+
+
+/* Full-width input fields */
+
+input[type=text] {
+    width: 75%;
+    padding: 20px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    padding: 25px;
+}
+
+input[type=text]:focus {
+    background-color: #ddd;
+    outline: none;
+    padding: 25px;
+}
+
+
+/* Overwrite default styles of hr */
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+
+/* Set a style for the submit button */
+
+.forgotbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin-left: 25%;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    opacity: 0.9;
+    font-size: 27px;
+}
+
+.forgotbtn:hover {
+    opacity: 1;
+}
+
+.login {
+    margin-left: 37%;
+    padding: 25px;
+}
+
+.login a {
+    color: white;
+}

@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
+    <title>Crear una receta</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/CrearReceta.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="../static/img/logo.ico">
+</head>
+
+<body>
+    <form method="POST">
+
+        <div class="container">
+            {% if confirm != None %}
+            <div class="w3-panel w3-green">
+                <h2>
+                    ! Proceso completado !
+                </h2>
+                <p>{{confirm}}</p>
+            </div> {% endif %}
+
+            <h1 align="center">Agregar una receta</h1>
+            <p>Llena este formulario para crear una nueva receta.</p>
+            <hr>
+
+            <label for="titulo"><b>Titulo</b></label>
+            <input type="text" placeholder="Ingresar titulo" name="titulo" id="titulo" required>
+
+            <label for="autor"><b>Autor</b></label>
+            <input type="text" placeholder="Ingresar nombre" name="autor" id="autor" required>
+
+            <label for="resumen"><b>Resumen</b></label>
+            <input type="text" style="height: 100px;" placeholder="Ingresar resumen" name="resumen" id="resumen" required>
+
+            <label for="ingredientes"><b>Ingredientes</b></label>
+            <input type="text" style="height: 100px;" placeholder="Ingresar ingredientes" name="ingredientes" id="ingredientes" required>
+
+            <label for="procedimiento"><b>Procedimiento</b></label>
+            <input type="text" style="height: 100px;" placeholder="Ingresar procedimiento" name="procedimiento" id="procedimiento" required>
+
+            <label for="tiempo"><b>Tiempo de preparacion</b></label>
+            <input type="text" placeholder="Ingresar tiempo de preparacion" name="tiempo" id="tiempo" required>
+
+            <label for="imagen"><b>Imagen</b></label>
+            <input type="text" placeholder="Ingresar URL de la imagen" name="imagen" id="imagen" required>
+
+            <hr>
+
+            <button type="submit" class="registrobtn">Subir receta</button>
+        </div>
+
+
+    </form>
+</body>
+
+</html>

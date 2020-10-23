@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<title>CUK Cocina Gourmet</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="shortcut icon" href="../static/img/logo.ico">
+<style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Karma", sans-serif
+    }
+    
+    .w3-bar-block .w3-bar-item {
+        padding: 20px
+    }
+</style>
+
+<body>
+
+    <!-- Sidebar (hidden by default) -->
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Cerrar Menu</a>
+        <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+        <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACTANOS</a>{% for receta in recetas %}
+        <a href="#{{receta.titulo}}" onclick="w3_close()" class="w3-bar-item w3-button">{{receta.titulo}}</a> {% endfor %}
+    </nav>
+
+    <!-- Top menu -->
+    <div class="w3-top">
+        <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+            <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+            <div class="w3-right w3-padding-16"><a href="/Login">LOGIN</a></div>
+            <div class="w3-center w3-padding-16">CUK Cocina Gourmet</div>
+        </div>
+    </div>
+
+
+    {% for receta in recetas %}
+    <hr id="{{receta.titulo}}">
+
+    <div class="w3-content" style="max-width:1600px">
+        <div class="w3-container  w3-padding-64 w3" id="resumen">
+            <h1 align="center"> {{receta.titulo}}</h1>
+            <img class="w3-image w3-center" src="{{receta.imagen}}" alt="{{receta.imagen}}" style="display:block;margin:auto" width="1000" height="600">
+            <div class="w3-col m6 w3-padding-large">
+                <h1 class="w3-center">Resumen</h1><br>
+                <p class="w3-large">{{receta.resumen}}</p>
+            </div>
+
+            <div class="w3-col m6 w3-padding-large">
+                <h1 class="w3-center">Ingredientes</h1><br>
+                <p class="w3-large">{{receta.ingredientes}}</p>
+            </div>
+
+            <div class="w3-col m6 w3-padding-large">
+                <h1 class="w3-center">Procedimiento</h1><br>
+                <p class="w3-large">{{receta.procedimiento}}</p>
+            </div>
+
+            <div class="w3-col m6 w3-padding-large">
+                <h1 class="w3-center">Tiempo de Preparacion</h1><br>
+                <h2 class="w3-center" class="w3-large">{{receta.tiempo}}</h2>
+            </div>
+            <h2 class="w3-right"> Autor de la receta : {{receta.autor}}</h2>
+        </div>
+    </div>
+    {% endfor %}
+
+    <hr id="about">
+
+    <!-- About Section -->
+    <div class="w3-container w3-padding-32 w3-center">
+        <h3>Acerca De CUK</h3><br>
+
+        <div class="w3-padding-32">
+            <h4><b>El mejor lugar para compartir tus recetas</b></h4>
+            <h6><i>With Passion For Real, Good Food</i></h6>
+            <p>Este es una web donde encontraras todo tipo de recetas publicadas por usuarios entusiastas a la cocina, podras compartir con los demas usuarios solo registrate y disfruta de todas las recetas que tenemos para ti.</p>
+        </div>
+    </div>
+    <hr>
+    <hr id="contact">
+    <!-- Footer -->
+    <footer class="w3-row-padding w3-padding-32">
+        <div class="w3-third">
+
+            <h1>
+                CONTACTANOS
+            </h1>
+            <p>
+                Email : 3005959480101@ingenieria.usac.edu.gt Facultad de Ingenieria USAC.
+            </p>
+            <p> Jonatan Gonzalez </p>
+
+            <h3>CUK - 2020 Todos los derechos reservados.</h3>
+        </div>
+
+    </footer>
+
+    <!-- End page content -->
+    </div>
+
+    <script>
+        // Script to open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>
