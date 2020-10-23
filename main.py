@@ -76,7 +76,7 @@ def login():
 @app.route('/Logout')
 def Logout():
     session.pop("user",None)
-    return render_template("Home.html", recetas = recetas)            
+    return redirect(url_for("/"))           
             
 @app.route('/Registro', methods=['POST', 'GET'])
 def SignUp(): 
