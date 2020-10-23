@@ -80,7 +80,7 @@ def login():
             error = None
             usuario = request.form['username']
             session['user'] = usuario
-            return redirect(url_for("Inicio"))
+            return redirect(url_for("inicio"))
         elif validarLogin(usuario,contra) and usuario== "admin" :
             error = None
             session['user'] =  usuario
