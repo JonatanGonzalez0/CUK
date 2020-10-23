@@ -44,19 +44,19 @@ def buscarUsuario(user):
             return usuario.usuario
 
 def buscarNombre(user):
-    for usuariox in usuarios:
-        if usuariox.usuario == user:
-            return usuariox.nombre
+    for usuario in usuarios:
+        if usuario.usuario == user:
+            return usuario.nombre
 
 def buscarApellido(user):
-    for usuariox in usuarios:
-        if usuariox.usuario == user:
-            return usuariox.apellido 
+    for usuario in usuarios:
+        if usuario.usuario == user:
+            return usuario.apellido 
 
 def buscarContra(user):
-    for usuariox in usuarios:
-        if usuariox.usuario == user:
-            return usuariox.contrasena
+    for usuario in usuarios:
+        if usuario.usuario == user:
+            return usuario.contrasena
 
 
 
