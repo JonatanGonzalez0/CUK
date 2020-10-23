@@ -80,7 +80,7 @@ def login():
 @app.route('/Logout')
 def Logout():
     session.pop("user",None)
-    return redirect(url_for("Index"))           
+    return redirect(url_for("index"))           
             
 @app.route('/Registro', methods=['POST', 'GET'])
 def SignUp(): 
