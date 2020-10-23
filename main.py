@@ -29,8 +29,7 @@ def usuarioExistente(user):
 def registroUsuario(nombre,apellido,user,password,password2):
     if(password==password2):
         usuarios.append(Usuario(user,password,nombre,apellido))
-    else:
-        return False 
+   
 
 def buscarUsuario(user):
     for usuario in usuarios:
@@ -150,7 +149,7 @@ def modificarUser():
             else:
                 if usuarioExistente(userMod)==False:
                     
-                    currentUser = session['user']
+                    currentUser = session["user"]
                     deleteUsuario(currentUser)
                     registroUsuario(nombreMod,apellidoMod,userMod,contrasenaMod,contrasena2Mod)
                     session['user'] = userMod
