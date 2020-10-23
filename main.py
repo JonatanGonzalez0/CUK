@@ -143,7 +143,7 @@ def modificarUser():
 
             if userMod==currentUser and contrasenaMod==contrasena2Mod:
                 
-                deleteUsuario(usuario)
+                deleteUsuario(currentUser)
                 registroUsuario(nombreMod,apellidoMod,userMod,contrasenaMod,contrasena2Mod)
                 error = None
                 confirm = 'Se a modificado completamente'
@@ -152,18 +152,20 @@ def modificarUser():
                 return render_template('modifyUser.html', confirm = confirm,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)
             else:
                 if usuarioExistente(userMod)==False:
-                
+                    
+                    usuario = session["user"]
                     deleteUsuario(usuario)
                     registroUsuario(nombreMod,apellidoMod,userMod,contrasenaMod,contrasena2Mod)
                     session['user'] = userMod
-                    confirm = 'Se a modificado completamente'
-                    imprimirUsuarios()
-                    return render_template('modifyUser.html', confirm = confirm,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
+                    confirm = 'Se a modificado su usuario correctamente'
+                
+                    return render_template('modifyUser.html', confirm = confirm,error =None
+                    ,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
                 else:
                     error = 'Ya existe un usuario con ese nombre, intenta con otro'
-                    imprimirUsuarios()
-                    confirm = None
-                    return render_template('modifyUser.html',confirm = confirm,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)        
+                    
+                    return render_template('modifyUser.html',confirm = None,error =error
+                    ,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)        
         else:
             return redirect(url_for("login")) 
     else:
