@@ -154,13 +154,11 @@ def modificarUser():
                     session['user'] = userMod
                     confirm = 'Se a modificado su usuario correctamente'
                 
-                    return render_template('modifyUser.html', confirm = confirm,error =None
-                    ,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
+                    return render_template('modifyUser.html', confirm = confirm,error =None,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
                 else:
                     error = 'Ya existe un usuario con ese nombre, intenta con otro'
                     
-                    return render_template('modifyUser.html',confirm = None,error =error
-                    ,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)        
+                    return render_template('modifyUser.html',confirm = None,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)        
         else:
             return redirect(url_for("login")) 
     else:
@@ -171,7 +169,7 @@ def modificarUser():
             currentApellido = UserData.apellido
             currentUser = UserData.usuario
             currentPass = UserData.contrasena 
-            return render_template('modifyUser.html',confirm = None ,error = None, nombre = currentName, apellido = currentApellido, usuario = currentUser, contrasena = currentPass)        
+            return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = currentUser, contrasena = currentPass)        
         else:
             return redirect(url_for("login")) 
      
