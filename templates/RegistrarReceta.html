@@ -5,6 +5,8 @@
     <title>Crear una receta</title>
     <link rel="stylesheet" type="text/css" href="../static/css/CrearReceta.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <link rel="shortcut icon" href="../static/img/logo.ico">
 </head>
 
@@ -31,16 +33,16 @@
             <input type="text" placeholder="Ingresar nombre" name="autor" id="autor" required>
 
             <label for="resumen"><b>Resumen</b></label>
-            <input type="text" style="height: 100px;" placeholder="Ingresar resumen" name="resumen" id="resumen" required>
+            <textarea class="w3-input " id="resumen" name="resumen" rows="4" cols="50"></textarea>
 
             <label for="ingredientes"><b>Ingredientes</b></label>
-            <input type="text" style="height: 100px;" placeholder="Ingresar ingredientes" name="ingredientes" id="ingredientes" required>
+            <textarea class="w3-input " id="ingredientes" name="ingredientes" rows="4" cols="50"></textarea>
 
             <label for="procedimiento"><b>Procedimiento</b></label>
-            <input type="text" style="height: 100px;" placeholder="Ingresar procedimiento" name="procedimiento" id="procedimiento" required>
+            <textarea class="w3-input " id="procedimiento" name="procedimiento" rows="4" cols="50"></textarea>
 
             <label for="tiempo"><b>Tiempo de preparacion</b></label>
-            <input type="text" placeholder="Ingresar tiempo de preparacion" name="tiempo" id="tiempo" required>
+            <textarea class="w3-input " id="tiempo" name="tiempo" rows="4" cols="50"></textarea>
 
             <label for="imagen"><b>Imagen</b></label>
             <input type="text" placeholder="Ingresar URL de la imagen" name="imagen" id="imagen" required>
