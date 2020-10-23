@@ -78,13 +78,12 @@ def login():
         
         if validarLogin(usuario, contra) and usuario != "admin":
             error = None
-            usuario = request.form['username']
             session['user'] = usuario
-            return redirect(url_for("inicio"))
+            return redirect(url_for("Inicio"))
         elif validarLogin(usuario,contra) and usuario== "admin" :
             error = None
             session['user'] =  usuario
-            return redirect(url_for("dashboard"))
+            return redirect(url_for("Dashboard"))
         else:
             error = 'Credenciales no validas, vuelva a intentarlo'
             return render_template('Login.html', error=error)               
