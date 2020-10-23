@@ -222,7 +222,7 @@ def RegistrarReceta():
         recetas.append(Receta(autor,titulo,resumen,ingredientes,procedimiento,tiempo,imagen)) 
         confirm = 'La receta se agrego correctamente'
         render_template('RegistrarReceta.html' , confirm = confirm)
-        Inicio()      
+        return Inicio()      
     return render_template('RegistrarReceta.html', confirm = confirm )      
 
 if __name__ == '__main__':
