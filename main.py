@@ -55,7 +55,7 @@ def index():
 
 @app.route('/Login', methods=['POST', 'GET'])
 def login():
-    error = None
+    
     if request.method == 'POST':
         usuario = request.form['username']
         contra = request.form['password']
@@ -71,7 +71,7 @@ def login():
             return redirect(url_for("Dashboard"))
         else:
             error = 'Credenciales no validas, vuelva a intentarlo'
-            return render_template('Login.html', error=error)               
+            return redirect(url_for("login"))             
     return render_template('Login.html', error = None)  
 
 @app.route('/Logout')
