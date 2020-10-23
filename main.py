@@ -148,8 +148,8 @@ def modificarUser():
             else:
                 if usuarioExistente(userMod)==False:
                     
-                    usuario = session["user"]
-                    deleteUsuario(usuario)
+                    currentUser = session['user']
+                    deleteUsuario(currentUser)
                     registroUsuario(nombreMod,apellidoMod,userMod,contrasenaMod,contrasena2Mod)
                     session['user'] = userMod
                     confirm = 'Se a modificado su usuario correctamente'
