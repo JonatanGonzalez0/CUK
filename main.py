@@ -29,13 +29,6 @@ def usuarioExistente(user):
 def registroUsuario(nombre,apellido,user,password,password2):
     if(password==password2):
         usuarios.append(Usuario(user,password,nombre,apellido))
-   
-
-def buscarUsuario(user):
-    for usuario in usuarios:
-        if usuario.usuario ==user:
-            return usuario
-    return False     
 
 def deleteUsuario(user):
     for usuariox in usuarios:
@@ -44,7 +37,27 @@ def deleteUsuario(user):
 
 def imprimirUsuarios():
     for usuario in usuarios:
-        print(usuario.nombre  + usuario.apellido + usuario.usuario + usuario.contrasena)        
+        print(usuario.nombre  + usuario.apellido + usuario.usuario + usuario.contrasena)  
+##funciones para buscar datos de un usuario
+def buscarUsuario(user):
+    for usuario in usuarios:
+        if usuario.usuario ==user:
+            return usuario.usuario
+
+def buscarNombre(user):
+    for usuariox in usuarios:
+        if usuariox.usuario == user:
+            return usuariox.nombre
+
+def buscarApellido(user):
+    for usuariox in usuarios:
+        if usuariox.usuario == user:
+            return usuariox.apellido 
+
+def buscarContra(user):
+    for usuariox in usuarios:
+        if usuariox.usuario == user:
+            return usuariox.contrasena
 
 
 
@@ -113,11 +126,9 @@ def Forgot():
     if request.method == 'POST':
         user = request.form['usuario']
         if usuarioExistente(user):
-            for usuario in usuarios:
-                if usuario.usuario ==user:
-                    error = None
-                    confirm = 'Su contrasena es : ' + usuario.contrasena
-                    return render_template('Forgot.html', confirm = confirm, error = error)  
+            error = None
+            confirm = 'Su contrasena es : ' + buscarContra(user)
+            return render_template('Forgot.html', confirm = confirm, error = error)        
         else:
             confirm = None
             error = 'No se encontro al usuario, intente de nuevo'
@@ -125,15 +136,14 @@ def Forgot():
 
     return render_template('Forgot.html',confirm = confirm,error = error)  
 
-@app.route('/Modificar',methods=['POST', 'GET'])
+@app.route('/Modificar',methods=['POST'])
 def modificarUser():
     confirm = None
     error = None
     if request.method=='POST':
         if "user" in session:
-            usuario = session["user"]
-            UserData = buscarUsuario(usuario)
-            currentUser = UserData.usuario
+            usuario = session["user"]  
+            currentUser = usuario
     
             userMod  = request.form['usuario']
             nombreMod = request.form['nombre']
@@ -169,11 +179,10 @@ def modificarUser():
     else:
         if "user" in session:
             usuario = session["user"]
-            UserData = buscarUsuario(usuario)
-            currentName = UserData.nombre
-            currentApellido = UserData.apellido
-            currentUser = UserData.usuario
-            currentPass = UserData.contrasena 
+            currentUser = usuario
+            currentName = buscarNombre(usuario)
+            currentApellido = buscarApellido(usuario) 
+            currentPass = buscarContra(usuario)
             return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = currentUser, contrasena = currentPass)        
         else:
             return redirect(url_for("login")) 
