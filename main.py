@@ -49,6 +49,10 @@ def imprimirUsuarios():
 
 
 @app.route("/")
+def home():
+    return redirect(url_for("index"))
+
+@app.route("/Index")
 def index():
     return render_template("Home.html",recetas = recetas)
 
@@ -76,7 +80,7 @@ def login():
 @app.route('/Logout')
 def Logout():
     session.pop("user",None)
-    return redirect(url_for("/"))           
+    return redirect(url_for("Index"))           
             
 @app.route('/Registro', methods=['POST', 'GET'])
 def SignUp(): 
