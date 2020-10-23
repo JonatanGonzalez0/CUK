@@ -236,7 +236,7 @@ def RegistrarReceta():
         return Inicio()      
     return render_template('RegistrarReceta.html', confirm = confirm )
 
-@app.route('/coment')          
+         
 
 if __name__ == '__main__':
     app.run(threaded = True, port = 5000)
