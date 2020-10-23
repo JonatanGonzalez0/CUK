@@ -179,7 +179,7 @@ def modificarUser():
             return redirect(url_for("login")) 
     else:
         if "user" in session:
-            usuario = session["user"]
+            usuario = session['user']
             currentUser = usuario
             currentName = buscarNombre(usuario)
             currentApellido = buscarApellido(usuario) 
