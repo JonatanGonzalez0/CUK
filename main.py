@@ -81,6 +81,8 @@ def Logout():
             
 @app.route('/Registro', methods=['POST', 'GET'])
 def SignUp(): 
+    error = None
+    confirm = None
     if request.method == 'POST':
         #obtener valores del formulario
         usuario  = request.form['usuario']
