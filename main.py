@@ -14,8 +14,8 @@ recetas.append(recetaPrueba)
 
 #Funcion para validar login
 def validarLogin(user,password):
-    for usuariox in usuarios:
-        if usuariox.usuario == user and usuariox.contrasena == password: 
+    for usuario in usuarios:
+        if usuario.usuario == user and usuario.contrasena == password: 
             return True
     return False
 #Funcion verificar usuario
