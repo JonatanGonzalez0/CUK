@@ -69,7 +69,7 @@ def home():
 def index():
     return render_template("Home.html",recetas = recetas)
 
-@app.route('/Login', methods=['POST', 'GET'])
+@app.route('/Login', methods=['POST','GET'])
 def login():
     error = None
     if request.method == 'POST':
@@ -87,7 +87,8 @@ def login():
         else:
             error = 'Credenciales no validas, vuelva a intentarlo'
             return render_template('Login.html', error=error)               
-    return render_template('Login.html', error = None)  
+    else:
+        return render_template('Login.html', error = None)  
 
 @app.route('/Logout')
 def Logout():
@@ -135,7 +136,7 @@ def Forgot():
 
     return render_template('Forgot.html',confirm = confirm,error = error)  
 
-@app.route('/Modificar',methods=['POST'])
+@app.route('/Modificar',methods=['POST','GET'])
 def modificarUser():
     confirm = None
     error = None
