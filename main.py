@@ -61,10 +61,12 @@ def login():
         contra = request.form['password']
         
         if validarLogin(usuario, contra) and usuario != "admin":
+            error = None
             usuario = request.form['username']
             session['user'] = usuario
             return redirect(url_for("Inicio"))
         elif validarLogin(usuario,contra) and usuario== "admin" :
+            error = None
             session['user'] =  usuario
             return redirect(url_for("Dashboard"))
         else:
@@ -79,8 +81,7 @@ def Logout():
             
 @app.route('/Registro', methods=['POST', 'GET'])
 def SignUp():
-    error = None
-    confirm = None
+    
     if request.method == 'POST':
         #obtener valores del formulario
         usuario  = request.form['usuario']
@@ -93,11 +94,11 @@ def SignUp():
             registroUsuario(nombre,apellido,usuario,contrasena,contrasena2)
             error = None
             confirm = 'Se a registrado completamente'
-            return render_template('Sign.html', confirm = confirm, error= error)
+            return redirect(url_for("Registro"))
         else:
             confirm = None
             error = 'Ya existe el usuaio, intenta con otro'  
-            return render_template('Sign.html', confirm = confirm,error=error)         
+            return redirect(url_for("Registro"))    
     else:
         return render_template('Sign.html',confirm = confirm,error=error)
         
