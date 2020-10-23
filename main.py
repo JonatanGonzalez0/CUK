@@ -179,11 +179,7 @@ def modificarUser():
             return render_template('modifyUser.html',confirm = None ,error = None, nombre = currentName, apellido = currentApellido, usuario = currentUser, contrasena = currentPass)        
         else:
             return redirect(url_for("login")) 
-
-        
-
-
-      
+     
 
 @app.route('/Inicio')
 def Inicio():
@@ -201,8 +197,6 @@ def Dashboard():
             return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios)  
     else:
         return redirect(url_for("login")) 
-
-
 
 
 @app.route('/RegistrarReceta', methods=['POST', 'GET'])
