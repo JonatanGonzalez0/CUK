@@ -38,11 +38,6 @@ def buscarUsuario(user):
             return usuario
     return False     
 
-def modificarUsuario(user,nombre,apellido,contrasena):
-    for usuario in usuarios:
-        if usuario.usuario == user:
-            userMod = Usuario(user,contrasena,nombre,apellido) 
-            usuario = userMod
 def deleteUsuario(user):
     for usuariox in usuarios:
         if usuariox.usuario == user:
