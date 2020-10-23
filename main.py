@@ -97,14 +97,14 @@ def SignUp():
         if usuarioExistente(usuario)==False:
             registroUsuario(nombre,apellido,usuario,contrasena,contrasena2)
             error = None
-            confirm = 'Se a registrado completamente'
+            confirm = 'Se a registrado el usuario'
             return render_template('Sign.html', confirm = confirm,error=None)
         else:
             confirm = None
             error = 'Ya existe el usuaio, intenta con otro'  
             return render_template('Sign.html', confirm = confirm,error=error)         
     else:
-        return render_template('Sign.html',confirm = None,error=error)
+        return render_template('Sign.html',confirm = None,error=None)
         
 @app.route('/Recuperacion',methods=['POST', 'GET'])
 def Forgot():
@@ -146,7 +146,7 @@ def modificarUser():
                 deleteUsuario(currentUser)
                 registroUsuario(nombreMod,apellidoMod,userMod,contrasenaMod,contrasena2Mod)
                 error = None
-                confirm = 'Se a modificado completamente'
+                confirm = 'Se a modificado los parametros del usuario completamente'
                 imprimirUsuarios()
                 
                 return render_template('modifyUser.html', confirm = confirm,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)
@@ -157,7 +157,7 @@ def modificarUser():
                     deleteUsuario(currentUser)
                     registroUsuario(nombreMod,apellidoMod,userMod,contrasenaMod,contrasena2Mod)
                     session['user'] = userMod
-                    confirm = 'Se a modificado su usuario correctamente'
+                    confirm = 'Se a modificado su usuario nuevo correctamente'
                 
                     return render_template('modifyUser.html', confirm = confirm,error =None,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
                 else:
