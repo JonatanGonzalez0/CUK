@@ -61,7 +61,6 @@ def login():
         contra = request.form['password']
         
         if validarLogin(usuario, contra) and usuario != "admin":
-            error = None
             usuario = request.form['username']
             session['user'] = usuario
             return redirect(url_for("Inicio"))
