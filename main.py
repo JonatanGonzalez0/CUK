@@ -200,10 +200,14 @@ def Inicio():
     if "user" in session:
         usuario = session["user"]
         if request.method == 'POST':
+            coment = request.form['coment{{receta.titulo}}'] 
+            #agregar un post al arreglo de posts
+            posts.append(Post("titulo receta",0,usuario,coment))
 
-            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas) 
+            print(coment)
+            print(usuario)
         else:
-            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas) 
+            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) 
         return render_template('HomeLoged.html', usuario = usuario , recetas = recetas)  
     else:
         return redirect(url_for("login"))   
@@ -241,14 +245,7 @@ def RegistrarReceta():
 @app.route('/PostComent', methods= ['POST', 'GET'])   
 def PostComent():
     if "user" in session:
-        usuario = session["user"]
-        if request.method==['POST']:
-            coment = request.form['coment{{receta.titulo}}'] 
-            #agregar un post al arreglo de posts
-            posts.append(Post("titulo receta",1,usuario,coment))
-
-            print(coment)
-            print(usuario)
+        
     else:
         return redirect(url_for("login"))        
 
