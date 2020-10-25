@@ -206,6 +206,7 @@ def Inicio():
 
             print(coment)
             print(usuario)
+            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) 
         else:
             return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) 
         return render_template('HomeLoged.html', usuario = usuario , recetas = recetas)  
