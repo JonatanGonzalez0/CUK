@@ -17,7 +17,7 @@ recetaPrueba2 = Receta("Admin","PIZZA HAWAIANA","La pizza hawaiana es la opción
 recetas.append(recetaPrueba2)
 recetas.append(recetaPrueba)
 
-##arreglo de posts
+##arreglo de postss
 posts = []
 
 
@@ -165,9 +165,7 @@ def modificarUser():
                 deleteUsuario(currentUser)
                 registroUsuario(nombreMod,apellidoMod,userMod,contrasenaMod,contrasena2Mod)
                 error = None
-                confirm = 'Se a modificado los parametros del usuario completamente'
-                imprimirUsuarios()
-                
+                confirm = 'Se a modificado los parametros del usuario completamente' 
                 return render_template('modifyUser.html', confirm = confirm,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)
             else:
                 if usuarioExistente(userMod)==False:
@@ -221,7 +219,7 @@ def Inicio():
 def Dashboard():
     if "user" in session:
         usuario = session["user"]
-        if usuario == 'admin':
+        if usuario == "admin":
             numRecetas = len(recetas)
             numUsuarios = len(usuarios)-1
             numReacciones = len(posts)
