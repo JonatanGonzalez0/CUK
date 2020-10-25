@@ -240,16 +240,7 @@ def RegistrarReceta():
         confirm = 'La receta se agrego correctamente'
         render_template('RegistrarReceta.html' , confirm = confirm)
         return Inicio()      
-    return render_template('RegistrarReceta.html', confirm = confirm )
-
-@app.route('/PostComent', methods= ['POST', 'GET'])   
-def PostComent():
-    if "user" in session:
-        
-    else:
-        return redirect(url_for("login"))        
-
-         
+    return render_template('RegistrarReceta.html', confirm = confirm )        
 
 if __name__ == '__main__':
     app.run(threaded = True, port = 5000)
