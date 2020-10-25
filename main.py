@@ -14,6 +14,8 @@ recetas= []
 recetas.append(recetaPrueba2)
 recetas.append(recetaPrueba)
 
+posts = []
+
 
 
 #Funcion para validar login
@@ -235,6 +237,20 @@ def RegistrarReceta():
         render_template('RegistrarReceta.html' , confirm = confirm)
         return Inicio()      
     return render_template('RegistrarReceta.html', confirm = confirm )
+
+@app.route('/PostComent', methods= ['POST', 'GET'])   
+def PostComent():
+    if "user" in session:
+        usuario = session["user"]
+        if request.method==['POST']:
+            coment = request.form['coment{{receta.titulo}}'] 
+            #agregar un post al arreglo de posts
+            posts.append(Post("titulo receta",1,usuario,coment))
+
+            print(coment)
+            print(usuario)
+    else:
+        return redirect(url_for("login"))        
 
          
 
