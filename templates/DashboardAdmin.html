@@ -149,14 +149,14 @@
             <h5>Usuarios</h5>
             <ul class="w3-ul w3-card-4 w3-white">
 
-                {% for user in usuarios %} {% if "user.usuario" == "admin" %}
+                {% for user in usuarios %} {% if user.usuario == "admin" %}
                 <tr>
                     <li class="w3-padding-16">
                         <img src="https://www.clipartmax.com/png/middle/319-3191274_male-avatar-admin-profile.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
                         <span class="w3-xlarge">{{user.nombre}} -- {{user.apellido}} -- {{user.usuario}} Rol : Administrador </span><br>
                     </li>
                 </tr>
-                {% endif %} {% if "user.usuario" != "admin" %}
+                {% endif %} {% if user.usuario != "admin" %}
                 <tr>
                     <li class="w3-padding-16">
                         <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
