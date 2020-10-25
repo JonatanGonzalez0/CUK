@@ -218,7 +218,10 @@ def Dashboard():
     if "user" in session:
         usuario = session["user"]
         if usuario == 'admin':
-            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios)  
+            numRecetas = len(recetas)
+            numUsuarios = len(usuarios)-1
+            numReacciones = len(posts)
+            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, numRecetas = numRecetas, numUsuarios = numUsuarios, numReacciones = numReacciones)  
     else:
         return redirect(url_for("login")) 
 
