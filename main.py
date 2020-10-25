@@ -199,7 +199,7 @@ def modificarUser():
 def Inicio():
     if "user" in session:
         usuario = session["user"]
-        if request.method == 'POST':
+        '''if request.method == 'POST':
             coment = request.form['coment{{receta.titulo}}'] 
             #agregar un post al arreglo de posts
             posts.append(Post("titulo receta",0,usuario,coment))
@@ -208,7 +208,7 @@ def Inicio():
             print(usuario)
             return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) 
         else:
-            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) 
+            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) '''
         return render_template('HomeLoged.html', usuario = usuario , recetas = recetas)  
     else:
         return redirect(url_for("login"))   
