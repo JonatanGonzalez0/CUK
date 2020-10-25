@@ -156,7 +156,7 @@
                         <span class="w3-xlarge">{{user.nombre}} -- {{user.apellido}} -- {{user.usuario}} Rol : Administrador </span><br>
                     </li>
                 </tr>
-                {% else %}
+                {% endif %} {% if "user.usuario" != "admin" %}
                 <tr>
                     <li class="w3-padding-16">
                         <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
