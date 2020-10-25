@@ -221,7 +221,7 @@ def Dashboard():
             numRecetas = len(recetas)
             numUsuarios = len(usuarios)-1
             numReacciones = len(posts)
-            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, numRecetas = numRecetas, numUsuarios = numUsuarios, numReacciones = numReacciones)  
+            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios, numReacciones = numReacciones)  
     else:
         return redirect(url_for("login")) 
 
