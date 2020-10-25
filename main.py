@@ -230,22 +230,25 @@ def Dashboard():
 
 @app.route('/RegistrarReceta', methods=['POST', 'GET'])
 def RegistrarReceta():
-    confirm = None
-    if request.method == 'POST':
-        #obtener valores del formulario
-        
-        autor = request.form['autor']
-        titulo  = request.form['titulo']
-        resumen = request.form['resumen']
-        ingredientes = request.form['ingredientes']
-        procedimiento = request.form['procedimiento']
-        tiempo = request.form['tiempo']
-        imagen = request.form['imagen']
+    if "user" in session:
+        confirm = None
+        if request.method == 'POST':
+            #obtener valores del formulario
+            autor = session["user"]
+            titulo  = request.form['titulo']
+            resumen = request.form['resumen']
+            ingredientes = request.form['ingredientes']
+            procedimiento = request.form['procedimiento']
+            tiempo = request.form['tiempo']
+            imagen = request.form['imagen']
 
-        recetas.append(Receta(autor,titulo,resumen,ingredientes,procedimiento,tiempo,imagen)) 
-        confirm = 'La receta se agrego correctamente'
-        return Inicio()      
-    return render_template('RegistrarReceta.html', confirm = confirm )        
+            recetas.append(Receta(autor,titulo,resumen,ingredientes,procedimiento,tiempo,imagen)) 
+            confirm = 'La receta se agrego correctamente'
+            return Inicio()      
+        return render_template('RegistrarReceta.html', confirm = confirm )
+    else:
+        return redirect(url_for("login")) 
+
 
 if __name__ == '__main__':
     app.run(threaded = True, port = 5000)
