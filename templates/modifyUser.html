@@ -42,10 +42,16 @@
             <input type="text" placeholder="Confirmar contraseña" name="psw-repeat" value="{{contrasena}}" id="psw-repeat" required>
             <hr>
 
-            <button type="submit" class="w3-button w3-green">Modificar</button>
+            <button type="submit" class="w3-button w3-green">Modificar</button> {% if {{usuario}} == 'admin' %}
+            <div class="col-12 login">
+                <a href="/Dashboard">Regresar al Dashboard</a>
+            </div>
+            {% endif %} {% if {{usuario}} != 'admin' %}
             <div class="col-12 login">
                 <a href="/Inicio">Regresar al Inicio</a>
             </div>
+            {% endif %}
+
         </div>
 
 
