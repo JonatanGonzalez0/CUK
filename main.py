@@ -10,17 +10,15 @@ app.secret_key = "IngenieriaUsacAdmin"
 usuarioMaestro = Usuario("admin","admin","Usuario", "Maestro",)
 usuarios = [usuarioMaestro]
 
-#Arreglos de recetas
+#Lista de recetas
 recetas= []
 recetaPrueba = Receta("Jonatan","Sandwitch Americano","Elaboracion de un Sandwitch americano con ingredientes frescos.","Pan , Jamon, Queso, Lechuga, Tomate","En un sartén disponer las lonchas de tocineta cortadas por la mitad y cocinar a fuego bajo hasta que suelten su grasa y queden crocantes. Cuando estén listas pasar por papel absorbente para eliminar el exceso de grasa. Aparte en otro sartén, derretir un poco de mantequilla y añadir las rodajas de pan, dorar por ambos lados. ","20 min","https://www.hogar.mapfre.es/media/2019/02/sandwich-americano.jpg")
 recetaPrueba2 = Receta("Admin","PIZZA HAWAIANA","La pizza hawaiana es la opción favorita de muchos, simplemente porque su combinación de piña con jamón es exquisita. Aquí te presentamos una receta muy original para que la prepares en tu casa.","1/2 taza de salsa de jitomate 1 taza de piña cortada en cubos pequeños 1 taza de cubos de jamón pequeños 1 cda. de chile habanero picado finamente 1 cda. de cebolla morada picada finamente 4 cdas. de aceite de oliva 1 taza de queso manchego","Salsea las bases y esparce sobre ella el jamón y la piña. Espolvorea el queso y hornea por 20 minutos o hasta que la masa esté cocida Revuelve el chile habanero en un tazón junto con la cebolla morada y el aceite de oliva. Cuando esté lista la pizza, cucharea esta mezcla sobre ella y lleva a la mesa.","1 Hora","https://dam.cocinafacil.com.mx/wp-content/uploads/2019/04/pizza-hawaiana.png")
 recetas.append(recetaPrueba2)
 recetas.append(recetaPrueba)
 
-##arreglo de postss
+##Lista de postss
 posts = []
-
-
 
 #Funcion para validar login
 def validarLogin(user,password):
@@ -67,8 +65,6 @@ def buscarContra(user):
     for usuario in usuarios:
         if usuario.usuario == user:
             return usuario.contrasena
-
-
 
 @app.route("/")
 def home():
@@ -215,7 +211,7 @@ def Inicio():
     else:
         return redirect(url_for("login"))   
 
-@app.route('/Dashboard') 
+@app.route('/Dashboard',methods=['POST','GET']) 
 def Dashboard():
     if "user" in session:
         usuario = session["user"]
