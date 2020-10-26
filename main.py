@@ -217,7 +217,7 @@ def Dashboard():
         usuario = session["user"]
         if usuario == "admin":
             numRecetas = len(recetas)
-            numUsuarios = len(usuarios)-1
+            numUsuarios = len(usuarios)
             numReacciones = len(posts)
             return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios, numReacciones = numReacciones)  
     else:
