@@ -94,7 +94,7 @@ def login():
 @app.route('/Logout',methods = ['POST', 'GET'])
 def Logout():
     session.pop("user",None)
-    return redirect(url_for("index"))           
+    return redirect(url_for("Index"))           
             
 @app.route('/Registro', methods=['POST', 'GET'])
 def SignUp(): 
@@ -187,7 +187,7 @@ def modificarUser():
             currentPass = buscarContra(usuario)
             return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = currentUser, contrasena = currentPass)        
         else:
-            return redirect(url_for("login")) 
+            return redirect(url_for("Login")) 
 
 
 
