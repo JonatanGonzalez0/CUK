@@ -242,12 +242,13 @@ def RegistrarReceta():
 def comentar():
     if "user" in session:
         if request.method == 'POST':
-            coment = request.form['coment{{receta.titulo}}'] 
+            coment = request.form['coment']
+            titulo = request.form['id'] 
             usuario = session["user"]
             #agregar un post al arreglo de posts
-            posts.append(Post("{{receta.titulo}}",datetime.strftime("%B %d, %Y %H:%M:%S"),usuario,coment))
+            posts.append(Post(titulo,datetime.strftime("%B %d, %Y %H:%M:%S"),usuario,coment))
 
-            print(Post("{{receta.titulo}}",datetime.strftime("%B %d, %Y %H:%M:%S"),usuario,coment))
+            print(Post(titulo,datetime.strftime("%B %d, %Y %H:%M:%S"),usuario,coment))
             return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) 
         else:
             return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts)       

@@ -79,27 +79,24 @@
             <h2 class="w3-right"> Autor de la receta : {{receta.autor}}</h2>
 
         </div>
-        <form action="/Comentar" method="POST" id="coment{{receta.titulo}}">
+        <form action="/Comentar" method="POST" id="{{receta.titulo}}">
             <div class="w3-container w3-padding">
                 <h6 class="w3-opacity">Social {{receta.titulo}}</h6>
-                <textarea class="w3-input w3-padding-16" id="coment{{receta.titulo}}" name="coment{{receta.titulo}}" rows="4" cols="50">Escribe tu comentario</textarea>
+                <textarea class="w3-input w3-padding-16" id="coment{{receta.titulo}}" name="coment" rows="4" cols="50">Escribe tu comentario</textarea>
                 <button type="submin" class="w3-button w3-theme-d1 w3-padding-16" id="likebtn{{receta.titulo}}" name="likebtn{{receta.titulo}}"><i class="fa fa-thumbs-up"></i> Me Gusta</button>
                 <button type="submit" class="w3-button w3-theme-d2 w3-padding-16" id="comentbtn{{receta.titulo}}" name="comentbtn{{receta.titulo}}"><i class="fa fa-pencil"></i>  Comentar</button>
             </div>
         </form>
 
-
+        {% for coment in coments %} {% if {{coment.tituloReceta}} == {{receta.titulo}} %}
         <div class="w3-container w3-card w3-padding-64 w3-round w3-margin"><br>
             <img src="https://www.w3schools.com/w3images/avatar3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-            <span class="w3-right w3-opacity">16 min</span>
-            <h4>Jane Doe</h4><br>
+            <span class="w3-right w3-opacity">{{coment.fecha}}</span>
+            <h4>{{coment.usuario}}</h4><br>
             <hr class="w3-clear">
-            <p>Este es un comentario de prueba</p>
+            <p>{{coment.coment}}</p>
 
-        </div>
-
-
-
+        </div>{% endinf %} {% endfor %}
     </div>
     {% endfor %}
 
