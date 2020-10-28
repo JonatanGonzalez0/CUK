@@ -22,10 +22,14 @@ posts = []
 
 #Funcion para validar login
 def validarLogin(user,password):
+    confirm = False
     for usuario in usuarios:
         if usuario.usuario == user and usuario.contrasena == password: 
-            return True
-    return False
+            confirm = True
+            return confirm
+            
+           
+    
 #Funcion verificar usuario
 def usuarioExistente(user):
     for usuario in usuarios:
@@ -94,7 +98,7 @@ def login():
 @app.route('/Logout',methods = ['POST', 'GET'])
 def Logout():
     session.pop("user",None)
-    return redirect(url_for("Index"))           
+    return redirect(url_for("index"))           
             
 @app.route('/Registro', methods=['POST', 'GET'])
 def SignUp(): 
@@ -187,7 +191,7 @@ def modificarUser():
             currentPass = buscarContra(usuario)
             return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = currentUser, contrasena = currentPass)        
         else:
-            return redirect(url_for("Login")) 
+            return redirect(url_for("login")) 
 
 
 
