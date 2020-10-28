@@ -238,7 +238,7 @@ def RegistrarReceta():
     else:
         return redirect(url_for("login")) 
 
-app.route('/Comentar', methods = ['POST', 'GET']) 
+@app.route('/Comentar', methods = ['POST', 'GET']) 
 def comentar():
     if "user" in session:
         if request.method == 'POST':
