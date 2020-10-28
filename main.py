@@ -32,10 +32,6 @@ def usuarioExistente(user):
         if usuario.usuario ==user:
             return True
     return False
-#Funcion para registrar usuario
-def registroUsuario(nombre,apellido,user,password,password2):
-    if(password==password2):
-        usuarios.append(Usuario(user,password,nombre,apellido))
 
 def deleteUsuario(user):
     for usuariox in usuarios:
@@ -112,8 +108,8 @@ def SignUp():
         contrasena = request.form['psw']
         contrasena2 = request.form['psw-repeat']
         
-        if usuarioExistente(usuario)==False:
-            registroUsuario(nombre,apellido,usuario,contrasena,contrasena2)
+        if usuarioExistente(usuario)==False and contrasena==contrasena2:
+            usuarios.append(Usuario(usuario,contrasena,nombre,apellido))
             error = None
             confirm = 'Se a registrado el usuario'
             return render_template('Sign.html', confirm = confirm,error=None)
@@ -191,8 +187,8 @@ def modificarUser():
             return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = currentUser, contrasena = currentPass)        
         else:
             return redirect(url_for("login")) 
-    
-     
+
+
 
 @app.route('/Inicio',methods=['POST', 'GET'])
 def Inicio():
