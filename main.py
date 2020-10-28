@@ -155,7 +155,8 @@ def modificarUser():
             if userMod==currentUser and contrasenaMod==contrasena2Mod:
                 
                 deleteUsuario(currentUser)
-                registroUsuario(nombreMod,apellidoMod,userMod,contrasenaMod,contrasena2Mod)
+                usuarios.append(Usuario(userMod,contrasenaMod,nombreMod,apellidoMod))
+         
                 error = None
                 confirm = 'Se a modificado los parametros del usuario completamente' 
                 return render_template('modifyUser.html', confirm = confirm,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)
@@ -166,7 +167,7 @@ def modificarUser():
                     deleteUsuario(currentUser)
                     session.pop("user",None)
                     
-                    registroUsuario(nombreMod,apellidoMod,userMod,contrasenaMod,contrasena2Mod)
+                    usuarios.append(Usuario(userMod,contrasenaMod,nombreMod,apellidoMod))
                     session['user'] = userMod
                     confirm = 'Se a modificado su usuario nuevo correctamente'
                 
