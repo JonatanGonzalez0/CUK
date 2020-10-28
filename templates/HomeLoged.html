@@ -79,7 +79,7 @@
             <h2 class="w3-right"> Autor de la receta : {{receta.autor}}</h2>
 
         </div>
-        <form method="POST" id="coment{{receta.titulo}}">
+        <form action="/Comentar" method="POST" id="coment{{receta.titulo}}">
             <div class="w3-container w3-padding">
                 <h6 class="w3-opacity">Social {{receta.titulo}}</h6>
                 <textarea class="w3-input w3-padding-16" id="coment{{receta.titulo}}" name="coment{{receta.titulo}}" rows="4" cols="50">Escribe tu comentario</textarea>
