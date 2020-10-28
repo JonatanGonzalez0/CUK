@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, url_for, make_response
+from datetime import datetime
 from Datos.Usuario import Usuario
 from Datos.Receta import Receta
 from Datos.Post import Post
@@ -199,16 +200,6 @@ def modificarUser():
 def Inicio():
     if "user" in session:
         usuario = session["user"]
-        '''if request.method == 'POST':
-            coment = request.form['coment{{receta.titulo}}'] 
-            #agregar un post al arreglo de posts
-            posts.append(Post("titulo receta",0,usuario,coment))
-
-            print(coment)
-            print(usuario)
-            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) 
-        else:
-            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) '''
         return render_template('HomeLoged.html', usuario = usuario , recetas = recetas)  
     else:
         return redirect(url_for("login"))   
@@ -247,6 +238,21 @@ def RegistrarReceta():
     else:
         return redirect(url_for("login")) 
 
+app.route('/Comentar', methods = ['POST', 'GET']) 
+def comentar():
+    if "user" in session:
+        if request.method == 'POST':
+            coment = request.form['coment{{receta.titulo}}'] 
+            usuario = session["user"]
+            #agregar un post al arreglo de posts
+            posts.append(Post("{{receta.titulo}}",datetime.strftime("%B %d, %Y %H:%M:%S"),usuario,coment))
+
+            print(Post("{{receta.titulo}}",datetime.strftime("%B %d, %Y %H:%M:%S"),usuario,coment))
+            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) 
+        else:
+            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts)       
+    else:
+        return redirect(url_for("login")) 
 
 if __name__ == '__main__':
     app.run( port = 5000, debug=True)
