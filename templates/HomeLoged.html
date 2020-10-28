@@ -88,13 +88,13 @@
             </div>
         </form>
 
-        {% for post in posts %} {% if "{{post.tituloReceta}}" == "{{receta.titulo}}" %}
+        {% for post in posts %} {% if post.tituloReceta == receta.titulo -%}
         <div class="w3-container w3-card w3-padding-64 w3-round w3-margin"><br>
             <img src="https://www.w3schools.com/w3images/avatar3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-            <span class="w3-right w3-opacity">{{coment.fecha}}</span>
-            <h4>{{coment.usuario}}</h4><br>
+            <span class="w3-right w3-opacity">{{post.fecha}}</span>
+            <h4>{{post.usuario}}</h4><br>
             <hr class="w3-clear">
-            <p>{{coment.coment}}</p>
+            <p>{{post.coment}}</p>
         </div>
         {% endif %} {% endfor %} {% endfor %}
 

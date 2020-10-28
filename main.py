@@ -259,9 +259,9 @@ def comentar():
             print(titulo)
             print(StrFecha)
             print(coment)
-            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) 
+            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts) 
         else:
-            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts)       
+            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts)       
     else:
         return redirect(url_for("login")) 
 

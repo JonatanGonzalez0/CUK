@@ -165,31 +165,15 @@
         <hr id="comentarios"> =
         <div class="w3-container">
             <h5> Comentarios </h5>
-            <div class="w3-row">
-                <div class="w3-col m2 text-center">
-                    <img class="w3-circle" src="https://www.w3schools.com/w3images/avatar2.png" style="width:96px;height:96px">
-                </div>
-                <div class="w3-col m10 w3-container">
-                    <h4>Admin <span class="w3-opacity w3-medium">Fecha: Sep 29, 2014, 9:12 PM</span></h4>
-                    <p>Comentario realizado por usuario</p><br>
-                </div>
-
-                <div class="w3-col m2 text-center">
-                    <img class="w3-circle" src="https://www.w3schools.com/w3images/avatar2.png" style="width:96px;height:96px">
-                </div>
-                <div class="w3-col m10 w3-container">
-                    <h4>Admin2 <span class="w3-opacity w3-medium">Fecha: Sep 29, 2014, 9:12 PM</span></h4>
-                    <p>Comentario realizado por usuario</p><br>
-                </div>
-
-                <div class="w3-col m2 text-center">
-                    <img class="w3-circle" src="https://www.w3schools.com/w3images/avatar2.png" style="width:96px;height:96px">
-                </div>
-                <div class="w3-col m10 w3-container">
-                    <h4>Admin3 <span class="w3-opacity w3-medium">Fecha: Sep 29, 2014, 9:12 PM</span></h4>
-                    <p>Comentario realizado por usuario</p><br>
-                </div>
+            {% for post in posts %}
+            <div class="w3-container w3-card w3-padding-64 w3-round w3-margin"><br>
+                <img src="https://www.w3schools.com/w3images/avatar3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                <span class="w3-right w3-opacity">{{post.fecha}}</span>
+                <h4>{{post.usuario}}</h4><br>
+                <hr class="w3-clear">
+                <p>{{post.coment}}</p>
             </div>
+            {% endfor %}
 
         </div>
 
