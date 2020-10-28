@@ -88,31 +88,29 @@
             </div>
         </form>
 
-        {% for coment in coments %} {% if {{coment.tituloReceta}} == {{receta.titulo}} %}
+        {% for post in posts %} {% if "{{post.tituloReceta}}" == "{{receta.titulo}}" %}
         <div class="w3-container w3-card w3-padding-64 w3-round w3-margin"><br>
             <img src="https://www.w3schools.com/w3images/avatar3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
             <span class="w3-right w3-opacity">{{coment.fecha}}</span>
             <h4>{{coment.usuario}}</h4><br>
             <hr class="w3-clear">
             <p>{{coment.coment}}</p>
-
-        </div>{% endinf %} {% endfor %}
-    </div>
-    {% endfor %}
-
-
-
-    <!-- Footer -->
-    <footer class="w3-row-padding w3-padding-32">
-        <div class="w3-third">
-            <h2>CUK - 2020 Todos los derechos reservados.</h2>
-
-            <h3>Jonatan Gonzalez </h3>
         </div>
+        {% endif %} {% endfor %} {% endfor %}
 
-    </footer>
 
-    <!-- End page content -->
+
+        <!-- Footer -->
+        <footer class="w3-row-padding w3-padding-32">
+            <div class="w3-third">
+                <h2>CUK - 2020 Todos los derechos reservados.</h2>
+
+                <h3>Jonatan Gonzalez </h3>
+            </div>
+
+        </footer>
+
+        <!-- End page content -->
     </div>
 
     <script>

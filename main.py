@@ -18,8 +18,12 @@ recetaPrueba2 = Receta("Admin","PIZZA HAWAIANA","La pizza hawaiana es la opción
 recetas.append(recetaPrueba2)
 recetas.append(recetaPrueba)
 
-##Lista de postss
+##Lista de posts
 posts = []
+now = datetime.now()
+StrFecha = now.strftime("%B %d, %Y %H:%M:%S")
+post1 = Post("PIZZA HAWAIANA",StrFecha,"Admin","Me gusta esta Receta")
+posts.append(post1)
 
 #Funcion para validar login
 def validarLogin(user,password):
@@ -200,7 +204,7 @@ def modificarUser():
 def Inicio():
     if "user" in session:
         usuario = session["user"]
-        return render_template('HomeLoged.html', usuario = usuario , recetas = recetas)  
+        return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts)  
     else:
         return redirect(url_for("login"))   
 
@@ -211,8 +215,8 @@ def Dashboard():
         if usuario == "admin":
             numRecetas = len(recetas)
             numUsuarios = len(usuarios)
-            numReacciones = len(posts)
-            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios, numReacciones = numReacciones)  
+            numComentarios = len(posts)
+            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numComentarios, numComentarios = numComentarios)  
     else:
         return redirect(url_for("login")) 
 
@@ -243,12 +247,18 @@ def comentar():
     if "user" in session:
         if request.method == 'POST':
             coment = request.form['coment']
-            titulo = request.form['id'] 
+            titulo = "PIZZA HAWAIANA"
             usuario = session["user"]
             #agregar un post al arreglo de posts
-            posts.append(Post(titulo,datetime.strftime("%B %d, %Y %H:%M:%S"),usuario,coment))
-
-            print(Post(titulo,datetime.strftime("%B %d, %Y %H:%M:%S"),usuario,coment))
+            #obtener fecha sistema
+            now = datetime.now()
+            StrFecha = now.strftime("%B %d, %Y %H:%M:%S")
+            posts.append(Post(titulo,StrFecha,usuario,coment))
+            
+            print(usuario)
+            print(titulo)
+            print(StrFecha)
+            print(coment)
             return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts) 
         else:
             return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,coments = posts)       
