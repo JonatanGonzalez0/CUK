@@ -191,6 +191,7 @@ def modificarUser():
             return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = currentUser, contrasena = currentPass)        
         else:
             return redirect(url_for("login")) 
+    
      
 
 @app.route('/Inicio',methods=['POST', 'GET'])
