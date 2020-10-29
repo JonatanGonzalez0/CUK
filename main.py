@@ -265,7 +265,7 @@ def comentar():
         return redirect(url_for("login")) 
         
 @app.route('/subirReceta',methods=['POST','GET']) 
-def Dashboard():
+def uploadFile():
     if "user" in session:
         usuario = session["user"]
         if usuario == "admin":
