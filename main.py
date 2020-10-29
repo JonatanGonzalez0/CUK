@@ -278,8 +278,8 @@ def uploadFile():
             if request.method == 'POST':
                 archivo = request.form['fileupload']
         
-                with open(archivo) as file: 
-                    datos = csv.reader(file) 
+                with open(archivo) as fil: 
+                    datos = csv.reader(fil) 
                     for row in datos:
                         recetas.append(Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
 
