@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for, make_response
+from flask import Flask, render_template, request, redirect, session, url_for
 from datetime import datetime
 from Datos.Usuario import Usuario
 from Datos.Receta import Receta
@@ -72,8 +72,8 @@ def buscarContra(user):
         if usuario.usuario == user:
             return usuario.contrasena
 
-def leerArchivo(path):
-    with open(path) as f:  
+def leerArchivo(archivo):
+    with open(archivo) as f:  
         datos = csv.reader(f) 
         for row in datos:
             recetas.append(Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
@@ -281,8 +281,8 @@ def uploadFile():
         if usuario == "admin":
             if request.method == 'POST':
                 archivo = request.files['fileupload']
-                path = archivo.name
-
+                
+                leerArchivo(archivo)
                 print(archivo)
                 #leerArchivo(path)
                 numRecetas = len(recetas)
