@@ -276,8 +276,10 @@ def uploadFile():
         usuario = session["user"]
         if usuario == "admin":
             if request.method == 'POST':
-                archivo = request.files('fileupload')
-        
+                archivo = request.files['fileupload']
+                
+                ##TypeError: expected str, bytes or os.PathLike object, not FileStorage
+                ##error al abrir el archivo enviado del form
                 with open(archivo) as fil: 
                     datos = csv.reader(fil) 
                     for row in datos:
