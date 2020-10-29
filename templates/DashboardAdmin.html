@@ -48,7 +48,14 @@
             <a href="#recetas" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Recetas</a>
             <a href="#usuarios" class="w3-bar-item w3-button w3-padding w3-green"><i class="fa fa-users fa-fw"></i>  Usuarios</a>
             <a href="#comentarios" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-bullseye fa-fw"></i>  Comentarios</a>
+            <form action="subirReceta" method="POST" enctype="multipart/form-data">
+                <input type="file" name="fileupload" id="fileToUpload">
+                <input type="submit" value="Subir archivo" name="submit">
+            </form>
+            
             <a href="Logout" class="w3-bar-item w3-button w3-padding"><i class="fa fa-close"></i>  Logout</a><br><br>
+
+
         </div>
     </nav>
 
