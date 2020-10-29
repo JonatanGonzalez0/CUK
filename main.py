@@ -72,6 +72,12 @@ def buscarContra(user):
         if usuario.usuario == user:
             return usuario.contrasena
 
+def leerArchivo(archivo):
+    datos = csv.reader(archivo) 
+    for row in datos:
+        recetas.append(Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+
+
 @app.route("/")
 def home():
     return redirect(url_for("index"))
@@ -272,7 +278,8 @@ def uploadFile():
         if usuario == "admin":
             if request.method == 'POST':
                 archivo = request.form['fileupload']
-
+                
+                leerArchivo(archivo)
                 numRecetas = len(recetas)
                 numUsuarios = len(usuarios)
                 numComentarios = len(posts)
