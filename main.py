@@ -254,16 +254,30 @@ def comentar():
             now = datetime.now()
             StrFecha = now.strftime("%B %d, %Y %H:%M:%S")
             posts.append(Post(titulo,StrFecha,usuario,coment))
-            
-            print(usuario)
+
             print(titulo)
-            print(StrFecha)
+            
             print(coment)
             return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts) 
         else:
             return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts)       
     else:
         return redirect(url_for("login")) 
+        
+@app.route('/subirReceta',methods=['POST','GET']) 
+def Dashboard():
+    if "user" in session:
+        usuario = session["user"]
+        if usuario == "admin":
+            if request.method == 'POST':
+                archivo = request.form['fileupload']
+
+                numRecetas = len(recetas)
+                numUsuarios = len(usuarios)
+                numComentarios = len(posts)
+                return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numComentarios, numComentarios = numComentarios)  
+    else:
+        return redirect(url_for("login"))        
 
 if __name__ == '__main__':
     app.run( port = 5000, debug=True)
