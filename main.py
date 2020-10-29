@@ -276,7 +276,7 @@ def uploadFile():
         usuario = session["user"]
         if usuario == "admin":
             if request.method == 'POST':
-                archivo = request.form.get('fileupload')
+                archivo = request.files('fileupload')
         
                 with open(archivo) as fil: 
                     datos = csv.reader(fil) 
