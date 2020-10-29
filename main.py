@@ -277,7 +277,7 @@ def uploadFile():
         usuario = session["user"]
         if usuario == "admin":
             if request.method == 'POST':
-                archivo = request.form['fileupload']
+                archivo = request.file['fileupload']
                 
                 leerArchivo(archivo)
                 numRecetas = len(recetas)
