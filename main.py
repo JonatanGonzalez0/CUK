@@ -284,7 +284,7 @@ def uploadFile():
                 
                 leerArchivo(archivo)
                 print(archivo)
-                #leerArchivo(path)
+                
                 numRecetas = len(recetas)
                 numUsuarios = len(usuarios)
                 numComentarios = len(posts)
