@@ -72,11 +72,7 @@ def buscarContra(user):
         if usuario.usuario == user:
             return usuario.contrasena
 
-def leerArchivo(archivo):
-    with open(archivo) as f:  
-        datos = csv.reader(f) 
-        for row in datos:
-            recetas.append(Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+
 
 
 
@@ -280,9 +276,13 @@ def uploadFile():
         usuario = session["user"]
         if usuario == "admin":
             if request.method == 'POST':
-                archivo = request.files['fileupload']
-                
-                leerArchivo(archivo)
+                archivo = request.form['fileupload']
+        
+                with open(archivo) as file: 
+                    datos = csv.reader(file) 
+                    for row in datos:
+                        recetas.append(Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+
                 print(archivo)
                 
                 numRecetas = len(recetas)
