@@ -43,15 +43,16 @@
         </div>
         <div class="w3-bar-block">
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-            <a href="/subirRecetas" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-bullseye fa-fw"></i>  Subir Recetas (File csv.)</a>
+            
             <a href="#reacciones" class="w3-bar-item w3-button w3-padding w3-green"><i class="fa fa-eye fa-fw"></i>  Reacciones</a>
             <a href="#recetas" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Recetas</a>
             <a href="#usuarios" class="w3-bar-item w3-button w3-padding w3-green"><i class="fa fa-users fa-fw"></i>  Usuarios</a>
             <a href="#comentarios" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-bullseye fa-fw"></i>  Comentarios</a>
             
+            <a class="w3-bar-item w3-button w3-padding-16 w3-blue"><i class="fa fa-bullseye fa-fw"></i>  Subir Recetas (File csv)</a>
             <form action="subirReceta" class="w3-padding-64" method="POST" enctype="multipart/form-data">
-                <input type="file" name="fileupload" id="fileupload">
-                <input type="submit" value="Subir archivo" name="submit">
+                <input type="file" class="w3-padding-16" name="fileupload" id="fileupload">
+                <input type="submit" class="w3-padding-16" value="Subir archivo" name="submit">
             </form>
             
             <a href="Logout" class="w3-bar-item w3-button w3-padding"><i class="fa fa-close"></i>  Logout</a><br><br>
