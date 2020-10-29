@@ -72,8 +72,8 @@ def buscarContra(user):
         if usuario.usuario == user:
             return usuario.contrasena
 
-def leerArchivo(archivo):
-    with open(archivo) as f:  
+def leerArchivo(path):
+    with open(path) as f:  
         datos = csv.reader(f) 
         for row in datos:
             recetas.append(Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
@@ -281,8 +281,10 @@ def uploadFile():
         if usuario == "admin":
             if request.method == 'POST':
                 archivo = request.files['fileupload']
-                
-                leerArchivo(archivo)
+                path = archivo.name
+
+                print(archivo)
+                #leerArchivo(path)
                 numRecetas = len(recetas)
                 numUsuarios = len(usuarios)
                 numComentarios = len(posts)
