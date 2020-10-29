@@ -79,9 +79,10 @@
             <h2 class="w3-right"> Autor de la receta : {{receta.autor}}</h2>
 
         </div>
-        <form action="/Comentar" method="POST" id="{{receta.titulo}}">
+        <form action="/Comentar" method="POST" >
             <div class="w3-container w3-padding">
                 <h6 class="w3-opacity">Social {{receta.titulo}}</h6>
+                <input id="comentId" type="hidden" name="comentId" value="{{receta.titulo}}">
                 <textarea class="w3-input w3-padding-16" id="coment{{receta.titulo}}" name="coment" rows="4" cols="50">Escribe tu comentario</textarea>
                 <button type="submin" class="w3-button w3-theme-d1 w3-padding-16" id="likebtn{{receta.titulo}}" name="likebtn{{receta.titulo}}"><i class="fa fa-thumbs-up"></i> Me Gusta</button>
                 <button type="submit" class="w3-button w3-theme-d2 w3-padding-16" id="comentbtn{{receta.titulo}}" name="comentbtn{{receta.titulo}}"><i class="fa fa-pencil"></i>  Comentar</button>

@@ -247,7 +247,7 @@ def comentar():
     if "user" in session:
         if request.method == 'POST':
             coment = request.form['coment']
-            titulo = "PIZZA HAWAIANA"
+            titulo = request.form['comentId']
             usuario = session["user"]
             #agregar un post al arreglo de posts
             #obtener fecha sistema
