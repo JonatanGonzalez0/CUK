@@ -79,6 +79,13 @@
             <h2 class="w3-right"> Autor de la receta : {{receta.autor}}</h2>
 
         </div>
+
+        <div class="w3-container w3-padding">
+            <a class="w3-button w3-theme-d1 w3-padding-16" href="/Like" id="likebtn{{receta.titulo}}"><i class="fa fa-thumbs-o-up"></i> Me Gusta</a>
+            <a class="w3-button w3-theme-d1 w3-padding-16" href="/DisLike" id="dontlikebtn{{receta.titulo}}"><i class="fa fa-thumbs-o-down"></i> No Me Gusta</a>
+            <a class="w3-button w3-theme-d1 w3-padding-16" href="/BadLike" id="badbtn{{receta.titulo}}"><i class="fa fa-thumbs-down"></i> Muy Dificil</a>
+        </div>
+
         <form action="/Comentar" method="POST">
             <div class="w3-container w3-padding">
                 <h6 class="w3-opacity">Social {{receta.titulo}}</h6>
@@ -88,11 +95,7 @@
                 <button type="submit" class="w3-button w3-theme-d2 w3-padding-16" id="comentbtn{{receta.titulo}}"><i class="fa fa-pencil"></i>  Comentar</button>
             </div>
         </form>
-        <div class="w3-container w3-padding">
-            <a class="w3-button w3-theme-d1 w3-padding-16" href="/Like" id="likebtn{{receta.titulo}}"><i class="fa fa-thumbs-o-up"></i> Me Gusta</a>
-            <a class="w3-button w3-theme-d1 w3-padding-16" href="/DisLike" id="dontlikebtn{{receta.titulo}}"><i class="fa fa-thumbs-o-down"></i> No Me Gusta</a>
-            <a class="w3-button w3-theme-d1 w3-padding-16" href="/BadLike" id="badbtn{{receta.titulo}}"><i class="fa fa-thumbs-down"></i> Muy Dificil</a>
-        </div>
+
 
         {% for post in posts %} {% if post.tituloReceta == receta.titulo -%}
 
