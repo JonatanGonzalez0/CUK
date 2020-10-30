@@ -9,8 +9,9 @@ app = Flask(__name__)
 app.secret_key = "IngenieriaUsacAdmin"
 
 #usuario maestro y arreglo de usuarios
+usuarios = []
 usuarioMaestro = Usuario("admin","admin","Usuario", "Maestro",)
-usuarios = [usuarioMaestro]
+usuarios.append(usuarioMaestro)
 
 #Lista de recetas
 recetas= []
