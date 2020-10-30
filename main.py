@@ -300,8 +300,8 @@ def uploadFile():
 @app.route('/Like')          
 def reactionLike():
     if "user" in session:
-        contadorBad = contadorBad + 1
-        return redirect(url_for("dashboard"))
+        contadorLikes = contadorLikes + 1
+        return redirect(url_for("inicio"))
     else:
         return redirect(url_for("login"))  
 
@@ -309,7 +309,7 @@ def reactionLike():
 def reactionDislike():
     if "user" in session:
         contadorDislike = contadorDislike + 1
-        return redirect(url_for("dashboard"))
+        return redirect(url_for("inicio"))
     else:
         return redirect(url_for("login"))   
 
@@ -317,9 +317,9 @@ def reactionDislike():
 def reactionBadlike():
     if "user" in session:
         contadorBad = contadorBad + 1
-        return redirect(url_for("dashboard"))
+        return redirect(url_for("inicio"))
     else:
-        return redirect(url_for("login"))                 
+        return redirect(url_for("inicio"))                 
 
 
 if __name__ == '__main__':
