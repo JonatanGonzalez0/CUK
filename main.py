@@ -292,7 +292,7 @@ def uploadFile():
                 numRecetas = len(recetas)
                 numUsuarios = len(usuarios)
                 numComentarios = len(posts)
-                numReacciones = contadorLikes + contadorDislike + contadorBad
+                numReacciones = global contadorLikes + global contadorDislike + global contadorBad
                 return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)  
     else:
         return redirect(url_for("login")) 
@@ -300,7 +300,7 @@ def uploadFile():
 @app.route('/Like')          
 def reactionLike():
     if "user" in session:
-        contadorLikes = contadorLikes + 1
+        global contadorLikes = contadorLikes + 1
         return redirect(url_for("inicio"))
     else:
         return redirect(url_for("login"))  
@@ -308,7 +308,7 @@ def reactionLike():
 @app.route('/DisLike')          
 def reactionDislike():
     if "user" in session:
-        contadorDislike = contadorDislike + 1
+        global contadorDislike = contadorDislike + 1
         return redirect(url_for("inicio"))
     else:
         return redirect(url_for("login"))   
@@ -316,7 +316,7 @@ def reactionDislike():
 @app.route('/BadLike')          
 def reactionBadlike():
     if "user" in session:
-        contadorBad = contadorBad + 1
+        global contadorBad = contadorBad + 1
         return redirect(url_for("inicio"))
     else:
         return redirect(url_for("inicio"))                 
