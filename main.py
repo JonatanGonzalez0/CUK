@@ -100,7 +100,7 @@ def login():
         if validarLogin(user, contra) and user != "admin":
             error = None
             session['user'] = user
-            return redirect(url_for("Inicio"))
+            return redirect(url_for("inicio"))
         elif validarLogin(user,contra) and user== "admin" :
             error = None
             session['user'] =  user
