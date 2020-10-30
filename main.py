@@ -328,7 +328,7 @@ def reactionDislike():
     else:
         return redirect(url_for("login"))   
 
-@app.route('/BadLike',methods =  ['POST','GET'])          
+@app.route('/BadLike')          
 def reactionBadlike():
     if "user" in session:
         usuario = session["user"]
