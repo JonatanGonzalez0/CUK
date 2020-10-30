@@ -227,7 +227,8 @@ def Dashboard():
             numRecetas = len(recetas)
             numUsuarios = len(usuarios)
             numComentarios = len(posts)
-            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numComentarios, numComentarios = numComentarios)  
+            numReacciones = contadorLikes + contadorDislike + contadorBad
+            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)  
     else:
         return redirect(url_for("login")) 
 
@@ -300,45 +301,27 @@ def uploadFile():
     else:
         return redirect(url_for("login")) 
 
-@app.route('/Like',methods =  ['POST','GET'])          
+@app.route('/Like')          
 def reactionLike():
     if "user" in session:
-        usuario = session["user"]
-        contadorLikes = contadorLikes + 1
-
-        numRecetas = len(recetas)
-        numUsuarios = len(usuarios)
-        numComentarios = len(posts)
-        numReacciones = contadorLikes + contadorDislike + contadorBad
-        return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)     
+        contadorBad = contadorBad + 1
+        return redirect(url_for("dashboard"))
     else:
-        return redirect(url_for("login")) 
+        return redirect(url_for("login"))  
 
-@app.route('/Dislike',methods =  ['POST','GET'])          
+@app.route('/DisLike')          
 def reactionDislike():
     if "user" in session:
-        usuario = session["user"]
         contadorDislike = contadorDislike + 1
-
-        numRecetas = len(recetas)
-        numUsuarios = len(usuarios)
-        numComentarios = len(posts)
-        numReacciones = contadorLikes + contadorDislike + contadorBad
-        return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)  
+        return redirect(url_for("dashboard"))
     else:
         return redirect(url_for("login"))   
 
 @app.route('/BadLike')          
 def reactionBadlike():
     if "user" in session:
-        usuario = session["user"]
         contadorBad = contadorBad + 1
-
-        numRecetas = len(recetas)
-        numUsuarios = len(usuarios)
-        numComentarios = len(posts)
-        numReacciones = contadorLikes + contadorDislike + contadorBad
-        return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)               
+        return redirect(url_for("dashboard"))
     else:
         return redirect(url_for("login"))                 
 
