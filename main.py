@@ -26,6 +26,11 @@ StrFecha = now.strftime("%B %d, %Y %H:%M:%S")
 post1 = Post("PIZZA HAWAIANA",StrFecha,"Admin","Me gusta esta Receta")
 posts.append(post1)
 
+#iniciar contadores de reacciones a las recetas
+contadorLikes = 0
+contadorDislike = 0
+contadorBad = 0
+
 #Funcion para validar login
 def validarLogin(user,password):
     confirm = False
@@ -276,23 +281,67 @@ def uploadFile():
         usuario = session["user"]
         if usuario == "admin":
             if request.method == 'POST':
-                archivo = request.files['fileupload']
+                #archivo = request.files['fileupload']
                 
                 ##TypeError: expected str, bytes or os.PathLike object, not FileStorage
                 ##error al abrir el archivo enviado del form
-                with open(archivo) as fil: 
+                '''with open(archivo) as fil: 
                     datos = csv.reader(fil) 
                     for row in datos:
                         recetas.append(Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
 
-                print(archivo)
+                print(archivo)'''
                 
                 numRecetas = len(recetas)
                 numUsuarios = len(usuarios)
                 numComentarios = len(posts)
-                return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numComentarios, numComentarios = numComentarios)  
+                numReacciones = contadorLikes + contadorDislike + contadorBad
+                return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)  
     else:
-        return redirect(url_for("login"))        
+        return redirect(url_for("login")) 
+
+@app.route('/Like',methods =  ['POST','GET'])          
+def reactionLike():
+    if "user" in session:
+        usuario = session["user"]
+        contadorLikes = contadorLikes + 1
+
+        numRecetas = len(recetas)
+        numUsuarios = len(usuarios)
+        numComentarios = len(posts)
+        numReacciones = contadorLikes + contadorDislike + contadorBad
+        return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)     
+    else:
+        return redirect(url_for("login")) 
+
+@app.route('/Dislike',methods =  ['POST','GET'])          
+def reactionDislike():
+    if "user" in session:
+        usuario = session["user"]
+        contadorDislike = contadorDislike + 1
+
+        numRecetas = len(recetas)
+        numUsuarios = len(usuarios)
+        numComentarios = len(posts)
+        numReacciones = contadorLikes + contadorDislike + contadorBad
+        return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)  
+    else:
+        return redirect(url_for("login"))   
+
+@app.route('/BadLike',methods =  ['POST','GET'])          
+def reactionBadlike():
+    if "user" in session:
+        usuario = session["user"]
+        contadorBad = contadorBad + 1
+
+        numRecetas = len(recetas)
+        numUsuarios = len(usuarios)
+        numComentarios = len(posts)
+        numReacciones = contadorLikes + contadorDislike + contadorBad
+        return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)               
+    else:
+        return redirect(url_for("login"))                 
+
 
 if __name__ == '__main__':
     app.run( port = 5000, debug=True)

@@ -79,12 +79,14 @@
             <h2 class="w3-right"> Autor de la receta : {{receta.autor}}</h2>
 
         </div>
-        <form action="/Comentar" method="POST" >
+        <form action="/Comentar" method="POST">
             <div class="w3-container w3-padding">
                 <h6 class="w3-opacity">Social {{receta.titulo}}</h6>
                 <input id="comentId" type="hidden" name="comentId" value="{{receta.titulo}}">
                 <textarea class="w3-input w3-padding-16" id="coment{{receta.titulo}}" name="coment" rows="4" cols="50">Escribe tu comentario</textarea>
-                <button type="submin" class="w3-button w3-theme-d1 w3-padding-16" id="likebtn{{receta.titulo}}" name="likebtn{{receta.titulo}}"><i class="fa fa-thumbs-up"></i> Me Gusta</button>
+                <button type="submin" class="w3-button w3-theme-d1 w3-padding-16" onclick="subirReceta('likebtn{{receta.titulo}}')" id="likebtn{{receta.titulo}}" name="likebtn{{receta.titulo}}"><i class="fa fa-thumbs-o-up"></i> Me Gusta</button>
+                <button type="submin" class="w3-button w3-theme-d1 w3-padding-16" id="dontlikebtn{{receta.titulo}}" name="dontlikebtn{{receta.titulo}}"><i class="fa fa-thumbs-o-down"></i> No Me Gusta</button>
+                <button type="submin" class="w3-button w3-theme-d1 w3-padding-16" id="badbtn{{receta.titulo}}" name="badbtn{{receta.titulo}}"><i class="fa fa-thumbs-down"></i> Muy Dificil</button>
                 <button type="submit" class="w3-button w3-theme-d2 w3-padding-16" id="comentbtn{{receta.titulo}}" name="comentbtn{{receta.titulo}}"><i class="fa fa-pencil"></i>  Comentar</button>
             </div>
         </form>
@@ -114,6 +116,7 @@
         <!-- End page content -->
     </div>
 
+    {% block script %}
     <script>
         // Script to open and close sidebar
         function w3_open() {
@@ -123,7 +126,18 @@
         function w3_close() {
             document.getElementById("mySidebar").style.display = "none";
         }
+
+        function reaccionLike(idReceta) {
+            let titulo = idReceta;
+            let contenido = document.getElementById('contenido').value;
+            let imagen = document.getElementById('imagen').value;
+
+
+
+        }
     </script>
+
+    {% endblock %}
 
 </body>
 
