@@ -122,17 +122,17 @@
             <h5>Estadistica general de reaccioness</h5>
             <p>Me gusta</p>
             <div class="w3-grey">
-                <div class="w3-container w3-center w3-padding w3-green" style="width:25%">{{porcentLikes}}%</div>
+                <div class="w3-container w3-center w3-padding w3-green" style="width:{{porcentLikes}}%">{{porcentLikes}}%</div>
             </div>
 
             <p>No me gusta</p>
             <div class="w3-grey">
-                <div class="w3-container w3-center w3-padding w3-orange" style="width:50%">{{porcentDisLikes}}%</div>
+                <div class="w3-container w3-center w3-padding w3-orange" style="width:{{porcentDisLikes}}%">{{porcentDisLikes}}%</div>
             </div>
 
             <p>Muy Dificil</p>
             <div class="w3-grey">
-                <div class="w3-container w3-center w3-padding w3-red" style="width:75%">{{porcentBad}}%</div>
+                <div class="w3-container w3-center w3-padding w3-red" style="width:{{porcentBad}}%">{{porcentBad}}%</div>
             </div>
         </div>
         <hr id="reacciones"> recetas
@@ -142,8 +142,17 @@
 
                 {% for receta in recetas %}
                 <tr>
-                    <td>{{receta.titulo}}</td>
-                    <td>Eliminar</td>
+
+                    <td>
+                        {{receta.titulo}
+                    </td>
+
+                    <td>
+                        <a class="w3-button w3-theme-d1 w3-padding-16" href="/ModificarReceta/{{receta.titulo}}" id="Mod{{receta.titulo}}">Modificar</a>
+                    </td>
+
+                    <a class="w3-button w3-theme-d1 w3-padding-16" href="/EliminarReceta/{{receta.titulo}}" id="Mod{{receta.titulo}}">Eliminar</a>
+
                 </tr>
                 {% endfor %}
 
@@ -174,7 +183,7 @@
             </ul>
         </div>
         <hr id="comentarios">
-        <div class="w3-container">
+        <div class="w3-container w3-padding-16">
             <h5> Comentarios </h5>
             {% for post in posts %}
             <div class="w3-container w3-card w3-padding-16 w3-round w3-margin"><br>

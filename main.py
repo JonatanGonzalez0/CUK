@@ -228,10 +228,15 @@ def Dashboard():
             numUsuarios = len(usuarios)
             numComentarios = len(posts)
             numReacciones = contadorLikes + contadorDislike + contadorBad
-
-            porcentLikes = (contadorLikes*100)/numReacciones
-            porcentDisLikes = (contadorDislike*100)/numReacciones
-            porcentBad = (contadorBad*100)/numReacciones
+            if numReacciones != 0:
+                porcentLikes = (contadorLikes*100)/numReacciones
+                porcentDisLikes = (contadorDislike*100)/numReacciones
+                porcentBad = (contadorBad*100)/numReacciones
+            else:
+                porcentLikes =0
+                porcentDisLikes = 0
+                porcentBad = 0
+            
             return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios , porcentLikes = porcentLikes, porcentDisLikes = porcentDisLikes, porcentBad = porcentBad)  
     else:
         return redirect(url_for("login")) 
