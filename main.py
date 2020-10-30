@@ -266,10 +266,6 @@ def comentar():
             now = datetime.now()
             StrFecha = now.strftime("%B %d, %Y %H:%M:%S")
             posts.append(Post(titulo,StrFecha,usuario,coment))
-
-            print(titulo)
-            
-            print(coment)
             return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts) 
         else:
             return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts)       
