@@ -81,6 +81,7 @@
         </div>
 
         <div class="w3-container w3-padding">
+            <h6 class="w3-opacity">{{receta.titulo}}</h6>
             <a class="w3-button w3-theme-d1 w3-padding-16" href="/Like" id="likebtn{{receta.titulo}}"><i class="fa fa-thumbs-o-up"></i> Me Gusta</a>
             <a class="w3-button w3-theme-d1 w3-padding-16" href="/DisLike" id="dontlikebtn{{receta.titulo}}"><i class="fa fa-thumbs-o-down"></i> No Me Gusta</a>
             <a class="w3-button w3-theme-d1 w3-padding-16" href="/BadLike" id="badbtn{{receta.titulo}}"><i class="fa fa-thumbs-down"></i> Muy Dificil</a>
@@ -88,7 +89,7 @@
 
         <form action="/Comentar" method="POST">
             <div class="w3-container w3-padding">
-                <h6 class="w3-opacity">Social {{receta.titulo}}</h6>
+
                 <input id="comentId" type="hidden" name="comentId" value="{{receta.titulo}}">
                 <textarea class="w3-input w3-padding-16" id="coment{{receta.titulo}}" name="coment" rows="4" cols="50">Escribe tu comentario</textarea>
 
