@@ -35,10 +35,11 @@ contadorBad = 0
 #Funcion para validar login
 def validarLogin(user,password):
     confirm = False
-    for usuario in usuarios:
-        if usuario.usuario == user and usuario.contrasena == password: 
+    for x in usuarios:
+        if x.usuario == user and x.contrasena == password: 
             confirm = True
             return confirm
+    return confirm        
             
            
     
@@ -106,7 +107,7 @@ def login():
             error = None
             session['user'] =  user
             return redirect(url_for("Dashboard"))
-        else:
+        if validarLogin(user,contra)==False:
             error = 'Credenciales no validas, vuelva a intentarlo'
             return render_template('Login.html', error=error)               
     else:
