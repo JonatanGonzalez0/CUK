@@ -38,8 +38,7 @@ def validarLogin(user,password):
     for x in usuarios:
         if x.usuario == user and x.contrasena == password: 
             confirm = True
-            return confirm
-    return confirm        
+            return confirm        
             
            
     
@@ -51,7 +50,7 @@ def usuarioExistente(user):
     return False
 
 def deleteUsuario(user):
-    posicion =None
+    
     for usuariox in usuarios:
         if usuariox.usuario == user:
             usuarios.remove(usuariox)
@@ -101,7 +100,6 @@ def login():
         contra = request.form['password']
         
         if validarLogin(user, contra) and user != "admin":
-            error = None
             session['user'] = user
             return redirect(url_for("inicio"))
         if validarLogin(user,contra) and user== "admin" :
