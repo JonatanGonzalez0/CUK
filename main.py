@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for, flash
 from datetime import datetime
 from Datos.Usuario import Usuario
 from Datos.Receta import Receta
@@ -334,6 +334,9 @@ def reactionBadlike():
     else:
         return redirect(url_for("inicio"))                 
 
-
+@app.route('/DescargarReportePDF')
+def DescargarReportePDF():
+    flash( 'Procesando descarga')
+    return redirect(url_for('Dashboard'))
 if __name__ == '__main__':
     app.run( port = 5000, debug=True)
