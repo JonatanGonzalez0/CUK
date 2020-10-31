@@ -276,9 +276,9 @@ def comentar():
             now = datetime.now()
             StrFecha = now.strftime("%B %d, %Y %H:%M:%S")
             posts.append(Post(titulo,StrFecha,usuario,coment))
-            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts) 
+            return redirect(url_for("inicio"))
         else:
-            return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts)       
+            return redirect(url_for("inicio"))      
     else:
         return redirect(url_for("login")) 
         
