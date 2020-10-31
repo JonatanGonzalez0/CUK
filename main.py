@@ -99,16 +99,18 @@ def login():
         user = request.form['username']
         contra = request.form['password']
         
-        if validarLogin(user, contra) and user != "admin":
-            session['user'] = user
-            return redirect(url_for("inicio"))
+        
         if validarLogin(user,contra) and user== "admin" :
             error = None
             session['user'] =  user
             return redirect(url_for("Dashboard"))
-        if validarLogin(user,contra)==False:
-            error = 'Credenciales no validas, vuelva a intentarlo'
-            return render_template('Login.html', error=error)               
+        else:
+            if validarLogin(user, contra) and user != "admin":
+                session['user'] = user
+                return redirect(url_for("inicio"))    
+            else:
+                error = 'Credenciales no validas, vuelva a intentarlo'
+                return render_template('Login.html', error=error)                        
     else:
         return render_template('Login.html', error = None)  
 
