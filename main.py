@@ -182,23 +182,23 @@ def modificarUser():
          
                 error = None
                 confirm = 'Se han modificado los datos del usuario correctamente' 
-                return render_template('modifyUser.html', confirm = confirm,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)
-            else:
-                if usuarioExistente(userMod)==False:
-                    
-                    currentUser = session['user']
-                    deleteUsuario(currentUser)
-                    session.pop("user",None)
-                    
-                    usuarios.append(Usuario(userMod,contrasenaMod,nombreMod,apellidoMod))
-                    session['user'] = userMod
-                    confirm = 'Se a modificado el nombre de usuario correctamente'
+                return render_template('modifyUser.html', confirm = confirm,error =None,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
+            if usuarioExistente(userMod)==False:
+                currentUser = session['user']
+                deleteUsuario(currentUser)
+                session.pop("user",None)   
+                newUser=Usuario(userMod,contrasenaMod,nombreMod,apellidoMod)
+
+                usuarios.append(newUser)
+
+                session['user'] = userMod
+                confirm = 'Se a modificado el nombre de usuario correctamente'
                 
-                    return render_template('modifyUser.html', confirm = confirm,error =None,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
-                else:
-                    error = 'Ya existe un usuario con ese nombre, intenta con otro'
+                return render_template('modifyUser.html', confirm = confirm,error =None,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
+            else:
+                error = 'Ya existe un usuario con ese nombre, intenta con otro'
                     
-                    return render_template('modifyUser.html',confirm = None,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)        
+                return render_template('modifyUser.html',confirm = None,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)        
         else:
             return redirect(url_for("login")) 
     
