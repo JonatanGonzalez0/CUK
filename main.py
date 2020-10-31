@@ -259,7 +259,7 @@ def RegistrarReceta():
 
             recetas.append(Receta(autor,titulo,resumen,ingredientes,procedimiento,tiempo,imagen)) 
             confirm = 'La receta se agrego correctamente'
-            return inicio()      
+            return redirect(url_for("inicio"))    
         return render_template('RegistrarReceta.html', confirm = confirm )
     else:
         return redirect(url_for("login")) 
