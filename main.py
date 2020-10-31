@@ -340,4 +340,4 @@ def DescargarReportePDF():
     flash( 'Procesando descarga')
     return redirect(url_for('Dashboard'))
 if __name__ == '__main__':
-    app.run( port = 5000, debug=True)
+    app.run( port = 5000)
