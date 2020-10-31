@@ -107,10 +107,10 @@ def login():
             if validarLogin(user, contra) and user != "admin":
                 session['user'] = user
                 return redirect(url_for("inicio"))
-
-        if validarLogin(user,contra)==False:
-            error = 'Credenciales no validas, vuelva a intentarlo'
-            return render_template('Login.html', error=error)                                        
+            else:
+                if validarLogin(user,contra)==False:
+                    error = 'Credenciales no validas, vuelva a intentarlo'
+                    return render_template('Login.html', error=error)                                                
     else:
         return render_template('Login.html', error = None)  
 
@@ -214,9 +214,7 @@ def modificarUser():
             return redirect(url_for("login")) 
         
 
-
-
-@app.route('/Inicio',methods=['POST', 'GET'])
+@app.route('/Inicio',methods=['GET'])
 def inicio():
     if "user" in session:
         usuario = session["user"]
