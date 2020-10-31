@@ -45,21 +45,21 @@
         <div class="w3-bar-block">
             <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
 
-            <a href="#reacciones" class="w3-bar-item w3-button w3-padding w3-green"><i class="fa fa-eye fa-fw"></i>  Reacciones</a>
-            <a href="#recetas" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Recetas Publicadas</a>
-            <a href="#usuarios" class="w3-bar-item w3-button w3-padding w3-green"><i class="fa fa-users fa-fw"></i>  Usuarios Registrados</a>
-            <a href="#comentarios" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-bullseye fa-fw"></i>  Comentarios</a>
-            <a href="Logout" class="w3-bar-item w3-button w3-padding"><i class="fa fa-close"></i>  Logout</a><br><br> <br><br>
+            <a href="#reacciones" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-line-chart" aria-hidden="true"></i>  Reacciones</a>
+            <a href="#recetas" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-file-image-o" aria-hidden="true"></i>  Recetas Publicadas</a>
+            <a href="#usuarios" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users" aria-hidden="true"></i> Usuarios Registrados</a>
+            <a href="#comentarios" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-comments-o" aria-hidden="true"></i>  Comentarios</a>
+            <a href="Logout" class="w3-bar-item w3-button w3-padding w3-red"><i class="fa fa-sign-out" aria-hidden="true"></i>  Logout</a><br><br>
 
 
-            <a class=" w3-bar-item w3-card w3-padding w3-blue"><i class="fa fa-bullseye fa-fw"></i>  Subir Recetas (File csv)</a>
+            <a class=" w3-bar-item w3-card w3-padding w3-blue"><i class="fa fa-cloud-upload" aria-hidden="true"></i>  Subir Recetas (File csv)</a>
             <form action="subirReceta" method="POST" enctype="multipart/form-data">
                 <input type="file" class="w3-padding-16" name="fileupload" id="fileupload">
-                <input type="submit" class="w3-button w3-center w3-green " value="Subir archivo" name="submit">
+                <input type="submit" class="w3-bar-item w3-button w3-center w3-green " value="Subir archivo" name="submit">
             </form>
-            <br><br> <br><br>
+            <br>
 
-            <a href="/DescargarReportePDF" class=" w3-bar-item w3-card w3-padding w3-blue"><i class="fa fa-download" aria-hidden="true"></i>  Descargar Recetas (PDF)</a>
+            <a href="/DescargarReportePDF" class=" w3-bar-item w3-button w3-card w3-center w3-padding w3-blue"><i class="fa fa-download" aria-hidden="true"></i>  Descargar Recetas (PDF)</a>
 
 
 
@@ -82,7 +82,7 @@
 
         <div class="w3-row-padding w3-margin-bottom">
             <div class="w3-quarter">
-                <div class="w3-container w3-red w3-padding-16">
+                <div class="w3-container w3-teal w3-padding-16">
                     <div class="w3-left"><i class="fa fa-share-alt  w3-xxxlarge"></i></div>
                     <div class="w3-right">
                         <h3>{{numRecetas}}</h3>
@@ -92,7 +92,7 @@
                 </div>
             </div>
             <div class="w3-quarter">
-                <div class="w3-container w3-blue w3-padding-16">
+                <div class="w3-container w3-teal w3-padding-16">
                     <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                     <div class="w3-right">
                         <h3>{{numUsuarios}}</h3>
@@ -112,7 +112,7 @@
                 </div>
             </div>
             <div class="w3-quarter">
-                <div class="w3-container w3-orange w3-text-white w3-padding-16">
+                <div class="w3-container w3-teal w3-text-white w3-padding-16">
                     <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
                     <div class="w3-right">
                         <h3>{{numComentarios}}</h3>
@@ -141,9 +141,9 @@
                 <div class="w3-container w3-center w3-padding w3-red" style="width:{{porcentBad}}%">{{porcentBad}}%</div>
             </div>
         </div>
-        <hr id="reacciones"> recetas
+        <hr id="reacciones">\
         <div class="w3-container">
-            <h5>Recetas</h5>
+            <h5>Recetas Publicadas</h5>
             <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
 
                 {% for receta in recetas %}
@@ -154,11 +154,11 @@
                     </td>
 
                     <td>
-                        <a style="color:white;" class="w3-button w3-theme-d1 w3-dark-grey " href="/ModificarReceta/{{receta.titulo}}" id="Mod{{receta.titulo}}"><i class="fa fa-pencil-square" aria-hidden="true"></i>  Modificar</a>
+                        <a style="color:white;" class="w3-button w3-theme-d1 w3-green " href="/ModificarReceta/{{receta.titulo}}" id="Mod{{receta.titulo}}"><i class="fa fa-pencil-square" aria-hidden="true"></i>  Modificar</a>
                     </td>
 
                     <td>
-                        <a style="color:white;" class="w3-button w3-theme-d1 w3-dark-grey " href="/EliminarReceta/{{receta.titulo}}" id="Mod{{receta.titulo}}"><i class="fa fa-trash"></i>  Eliminar</a>
+                        <a style="color:white;" class="w3-button w3-theme-d1 w3-red " href="/EliminarReceta/{{receta.titulo}}" id="Mod{{receta.titulo}}"><i class="fa fa-trash"></i>  Eliminar</a>
 
                     </td>
 
@@ -200,8 +200,8 @@
                 <span class="w3-right w3-opacity">{{post.fecha}}</span>
                 <span class="w3-center w3-opacity">{{post.tituloReceta}}</span>
                 <h4>{{post.usuario}}</h4><br>
-                <hr class="w3-clear">
-                <p>{{post.coment}}</p>
+
+                <p style="font-size: 25px;">{{post.coment}}</p>
             </div>
             {% endfor %}
 
