@@ -201,7 +201,8 @@ def modificarUser():
                     return render_template('modifyUser.html',confirm = None,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)        
         else:
             return redirect(url_for("login")) 
-    elif request.method =='GET':
+    
+    if request.method =='GET':
         if "user" in session:
             usuario = session['user']
             currentUser = usuario
