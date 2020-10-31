@@ -54,10 +54,7 @@ def deleteUsuario(user):
     posicion =None
     for usuariox in usuarios:
         if usuariox.usuario == user:
-            posicion = usuarios.index(usuariox)
-
-    if posicion != None:
-        del usuarios[posicion] 
+            usuarios.remove(usuariox)
 
 def imprimirUsuarios():
     for usuario in usuarios:
