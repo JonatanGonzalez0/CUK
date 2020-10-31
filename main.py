@@ -103,21 +103,29 @@ def login():
             error = None
             session['user'] =  user
             return redirect(url_for("Dashboard"))
+        if validarLogin(user, contra) and user != "admin":
+            error = None
+            session['user'] = user
+            return redirect(url_for("inicio"))
         else:
-            if validarLogin(user, contra) and user != "admin":
-                session['user'] = user
-                return redirect(url_for("inicio"))
-            else:
-                if validarLogin(user,contra)==False:
-                    error = 'Credenciales no validas, vuelva a intentarlo'
-                    return render_template('Login.html', error=error)                                                
+            if validarLogin(user,contra)==False:
+                error = 'Credenciales no validas, vuelva a intentarlo'
+                return render_template('Login.html', error=error)                                                
     else:
         return render_template('Login.html', error = None)  
 
 @app.route('/Logout',methods = ['POST', 'GET'])
 def Logout():
     session.pop("user",None)
-    return redirect(url_for("index"))           
+    return redirect(url_for("index")) 
+    
+@app.route('/Inicio',methods=['GET'])
+def inicio():
+    if "user" in session:
+        usuario = session["user"]
+        return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts)  
+    else:
+        return redirect(url_for("login"))                
             
 @app.route('/Registro', methods=['POST', 'GET'])
 def SignUp(): 
@@ -211,16 +219,7 @@ def modificarUser():
             currentPass = buscarContra(usuario)
             return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = currentUser, contrasena = currentPass)        
         else:
-            return redirect(url_for("login")) 
-        
-
-@app.route('/Inicio',methods=['GET'])
-def inicio():
-    if "user" in session:
-        usuario = session["user"]
-        return render_template('HomeLoged.html', usuario = usuario , recetas = recetas,posts = posts)  
-    else:
-        return redirect(url_for("login"))   
+            return redirect(url_for("login"))  
 
 @app.route('/Dashboard',methods=['POST','GET']) 
 def Dashboard():
