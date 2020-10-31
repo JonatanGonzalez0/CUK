@@ -184,7 +184,7 @@ def modificarUser():
                 usuarios.append(Usuario(userMod,contrasenaMod,nombreMod,apellidoMod))
          
                 error = None
-                confirm = 'Se a modificado los parametros del usuario completamente' 
+                confirm = 'Se han modificado los datos del usuario correctamente' 
                 return render_template('modifyUser.html', confirm = confirm,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)
             else:
                 if usuarioExistente(userMod)==False:
@@ -195,7 +195,7 @@ def modificarUser():
                     
                     usuarios.append(Usuario(userMod,contrasenaMod,nombreMod,apellidoMod))
                     session['user'] = userMod
-                    confirm = 'Se a modificado su usuario nuevo correctamente'
+                    confirm = 'Se a modificado el nombre de usuario correctamente'
                 
                     return render_template('modifyUser.html', confirm = confirm,error =None,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
                 else:
