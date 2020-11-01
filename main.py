@@ -44,10 +44,12 @@ def validarLogin(user,password):
     
 #Funcion verificar usuario
 def usuarioExistente(user):
+    confirm =False
     for usuario in usuarios:
         if usuario.usuario ==user:
-            return True
-    return False
+            confirm = True
+            return confirm
+    return confirm
 
 def deleteUsuario(user):
     
@@ -60,24 +62,11 @@ def imprimirUsuarios():
         print(usuario.nombre  + usuario.apellido + usuario.usuario + usuario.contrasena)  
 ##funciones para buscar datos de un usuario
 def buscarUsuario(user):
-    for usuario in usuarios:
-        if usuario.usuario ==user:
-            return usuario.usuario
+    for usuariox in usuarios:
+        if usuariox.usuario ==user:
+            datosUsuario = [usuariox.nombre,usuariox.apellido,usuariox.contrasena]
+            return datosUsuario 
 
-def buscarNombre(user):
-    for usuario in usuarios:
-        if usuario.usuario == user:
-            return usuario.nombre
-
-def buscarApellido(user):
-    for usuario in usuarios:
-        if usuario.usuario == user:
-            return usuario.apellido 
-
-def buscarContra(user):
-    for usuario in usuarios:
-        if usuario.usuario == user:
-            return usuario.contrasena
 
 @app.route("/")
 def home():
@@ -98,14 +87,13 @@ def login():
             error = None
             session['user'] =  user
             return redirect(url_for("Dashboard"))
-        if validarLogin(user, contra)==True and user != "admin":
+        elif validarLogin(user, contra) and user != "admin":
             error = None
             session['user'] = user
             return redirect(url_for("inicio"))
         else:
-            if validarLogin(user,contra)==False:
-                error = 'Credenciales no validas, vuelva a intentarlo'
-                return render_template('Login.html', error=error)                                                
+            error = 'Credenciales no validas, vuelva a intentarlo'
+            return render_template('Login.html', error=error)                                                
     else:
         return render_template('Login.html', error = None)  
 
@@ -154,7 +142,9 @@ def Forgot():
         user = request.form['usuario']
         if usuarioExistente(user) and user != "admin":
             error = None
-            confirm = 'Su contrasena es : ' + buscarContra(user)
+            datosUsuario = buscarUsuario(user)
+            contrasena = datosUsuario[2]
+            confirm = 'Su contrasena es : ' + contrasena
             return render_template('Forgot.html', confirm = confirm, error = error)        
         else:
             confirm = None
@@ -208,11 +198,12 @@ def modificarUser():
     if request.method =='GET':
         if "user" in session:
             usuario = session['user']
-            currentUser = usuario
-            currentName = buscarNombre(usuario)
-            currentApellido = buscarApellido(usuario) 
-            currentPass = buscarContra(usuario)
-            return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = currentUser, contrasena = currentPass)        
+            datosCurrentUser = buscarUsuario(usuario)
+
+            currentName = datosCurrentUser[0]
+            currentApellido = datosCurrentUser[1]
+            currentPass = datosCurrentUser[2]
+            return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = usuario, contrasena = currentPass)        
         else:
             return redirect(url_for("login"))  
 
