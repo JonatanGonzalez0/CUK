@@ -79,11 +79,6 @@ def buscarContra(user):
         if usuario.usuario == user:
             return usuario.contrasena
 
-
-
-
-
-
 @app.route("/")
 def home():
     return redirect(url_for("index"))
@@ -117,9 +112,9 @@ def login():
 @app.route('/Logout',methods = ['POST', 'GET'])
 def Logout():
     session.pop("user",None)
-    return redirect(url_for("index")) 
+    return render_template("Home.html",recetas = recetas)
     
-@app.route('/Inicio',methods=['GET'])
+@app.route('/Inicio',methods=['POST','GET'])
 def inicio():
     if "user" in session:
         usuario = session["user"]
