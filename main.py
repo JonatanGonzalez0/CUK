@@ -39,9 +39,8 @@ def validarLogin(user,password):
         if x.usuario == user and x.contrasena == password: 
             confirm = True
             return confirm        
-            
-           
-    
+    return confirm  
+
 #Funcion verificar usuario
 def usuarioExistente(user):
     confirm =False
@@ -52,7 +51,6 @@ def usuarioExistente(user):
     return confirm
 
 def deleteUsuario(user):
-    
     for usuariox in usuarios:
         if usuariox.usuario == user:
             usuarios.remove(usuariox)
@@ -60,13 +58,13 @@ def deleteUsuario(user):
 def imprimirUsuarios():
     for usuario in usuarios:
         print(usuario.nombre  + usuario.apellido + usuario.usuario + usuario.contrasena)  
-##funciones para buscar datos de un usuario
+
+#funcion para buscar datos de un usuario
 def buscarUsuario(user):
     for usuariox in usuarios:
         if usuariox.usuario ==user:
             datosUsuario = [usuariox.nombre,usuariox.apellido,usuariox.contrasena]
             return datosUsuario 
-
 
 @app.route("/")
 def home():
