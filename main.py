@@ -107,10 +107,10 @@ def login():
             error = None
             session['user'] = user
             return redirect(url_for("inicio"))
-        else:
-            if validarLogin(user,contra)==False:
-                error = 'Credenciales no validas, vuelva a intentarlo'
-                return render_template('Login.html', error=error)                                                
+        
+        if validarLogin(user,contra)==False:
+            error = 'Credenciales no validas, vuelva a intentarlo'
+            return render_template('Login.html', error=error)                                                
     else:
         return render_template('Login.html', error = None)  
 
