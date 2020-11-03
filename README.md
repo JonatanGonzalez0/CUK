@@ -1,7 +1,7 @@
 # CUK
-
+App deploy Heroku link: https://cuk-ipc.herokuapp.com
+Remote repositorie Heroku link: https://git.heroku.com/cuk-ipc.git
 Todo
-
 
 #Upload recetas by csv(admin)
 
