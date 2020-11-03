@@ -286,13 +286,15 @@ def uploadFile():
                 reader = csv.reader(filas, delimiter=',')
                 
                 for row in reader:
-                    recetas.append(Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+                    receta = Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+                    recetas.append(receta)
                     
                 
                 numRecetas = len(recetas)
                 numUsuarios = len(usuarios)
                 numComentarios = len(posts)
                 numReacciones = contadorLikes +  contadorDislike +  contadorBad
+                return {"msg": 'Receta agregada'}
                 return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)  
     else:
         return redirect(url_for("login")) 
