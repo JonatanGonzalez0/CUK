@@ -1,8 +1,11 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask import Flask, render_template, request, redirect, session, url_for, flash,jsonify
 from datetime import datetime
 from Datos.Usuario import Usuario
 from Datos.Receta import Receta
 from Datos.Post import Post
+from os import environ
+import json
+import base64
 import csv
 
 app = Flask(__name__)
@@ -267,22 +270,24 @@ def comentar():
     else:
         return redirect(url_for("login")) 
         
-@app.route('/subirReceta',methods=['POST','GET']) 
+@app.route('/cargarRecetas',methods=['POST']) 
 def uploadFile():
     if "user" in session:
         usuario = session["user"]
         if usuario == "admin":
             if request.method == 'POST':
-                #archivo = request.files['fileupload']
-                
-                ##TypeError: expected str, bytes or os.PathLike object, not FileStorage
-                ##error al abrir el archivo enviado del form
-                '''with open(archivo) as fil: 
-                    datos = csv.reader(fil) 
-                    for row in datos:
-                        recetas.append(Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+                datos = request.get_json()
+                if datos['data'] == '':
+                    return {"msg": 'Error en contenido'}
 
-                print(archivo)'''
+                contenido = base64.b64decode(datos['data']).decode('utf-8')
+
+                filas = contenido.splitlines()
+                reader = csv.reader(filas, delimiter=',')
+                
+                for row in reader:
+                    recetas.append(Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+                    
                 
                 numRecetas = len(recetas)
                 numUsuarios = len(usuarios)
