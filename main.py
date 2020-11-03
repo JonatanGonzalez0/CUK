@@ -294,7 +294,7 @@ def uploadFile():
                 numUsuarios = len(usuarios)
                 numComentarios = len(posts)
                 numReacciones = contadorLikes +  contadorDislike +  contadorBad
-                return {"msg": 'Receta agregada'}
+                
                 return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)  
     else:
         return redirect(url_for("login")) 
