@@ -299,6 +299,25 @@ def uploadFile():
     else:
         return redirect(url_for("login")) 
 
+@app.route('/EliminarReceta/<nombre_Receta>')
+def deleteReceta(nombre_Receta):
+    if "user" in session:
+        usuario = session["user"]
+        if usuario == "admin":
+              
+            for receta in recetas:
+                if receta.nombre == nombre_Receta:
+                    recetas.remove(receta)    
+                
+            numRecetas = len(recetas)
+            numUsuarios = len(usuarios)
+            numComentarios = len(posts)
+            numReacciones = contadorLikes +  contadorDislike +  contadorBad
+                
+            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)  
+    else:
+        return redirect(url_for("login")) 
+
 @app.route('/Like')          
 def reactionLike():
     if "user" in session:
