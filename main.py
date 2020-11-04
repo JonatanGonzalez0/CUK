@@ -241,6 +241,29 @@ def modificarUser():
         else:
             return redirect(url_for("login"))  
 
+@app.route('/RegistrarAdmin', methods=['POST', 'GET'])
+def registroAdmin(): 
+    error = None
+    confirm = None
+    if request.method == 'POST':
+        #obtener valores del formulario
+        usuario  = request.form['usuario']
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        contrasena = request.form['psw']
+        contrasena2 = request.form['psw-repeat']
+        
+        if usuarioExistente(usuario)==False and contrasena==contrasena2:
+            administradores.append(Usuario(usuario,contrasena,nombre,apellido))
+            error = None
+            confirm = 'Se a registrado el usuario'
+            return render_template('RegistrarAdmin.html', confirm = confirm,error=None)
+        else:
+            confirm = None
+            error = 'Ya existe el usuaio, intenta con otro'  
+            return render_template('RegistrarAdmin.html', confirm = confirm,error=error)         
+    else:
+        return render_template('RegistrarAdmin.html',confirm = None,error=None)
 
 @app.route('/ModificarAdmin',methods=['POST','GET'])
 def modificarAdmin():
