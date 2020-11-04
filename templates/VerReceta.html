@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>CUK Cocina Gourmet</title>
+<title>{{receta.titulo}}t</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -30,8 +30,7 @@
     <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Cerrar Menu</a>
         <a href="Logout" onclick="w3_close()" class="w3-bar-item w3-button">LOGOUT</a>
-        <a href="Modificar" onclick="w3_close()" class="w3-bar-item w3-button">Modificar mi Perfil</a>{% for receta in recetas %}
-        <a href="#{{receta.titulo}}" onclick="w3_close()" class="w3-bar-item w3-button">{{receta.titulo}}</a> {% endfor %}
+        <a href="/Inicio" onclick="w3_close()" class="w3-bar-item w3-button">Regresar al Inicio</a>
 
 
     </nav>
@@ -44,19 +43,13 @@
             <div class="w3-center w3-padding-16">CUK Cocina Gourmet</div>
         </div>
     </div>
-    {% if usuario != None %}
-    <div class="w3-container w3-padding-64 w3-center">
 
-        <a href="RegistrarReceta" class="w3-button w3-green">Crear una receta!</a>
-    </div>
-    {% endif %} {% for receta in recetas %}
-    <hr id="{{receta.titulo}}">
     <div class="w3-content" style="max-width:1600px">
 
 
         <div class="w3-container  w3-padding-64 w3" id="resumen">
             <h1 align="center"> {{receta.titulo}}</h1>
-            <a href="/VerReceta/{{receta.titulo}}"><img class="w3-image w3-center" src="{{receta.imagen}}" alt="{{receta.imagen}}" style="display:block;margin:auto" width="1000" height="600"></a>
+            <img class="w3-image w3-center" src="{{receta.imagen}}" alt="{{receta.imagen}}" style="display:block;margin:auto" width="1000" height="600">
             <div class="w3-col m6 w3-padding-large">
                 <h1 class="w3-center">Resumen</h1><br>
                 <p class="w3-large">{{receta.resumen}}</p>
@@ -108,7 +101,7 @@
             <hr class="w3-clear">
             <p>{{post.coment}}</p>
         </div>
-        {% endif %} {% endfor %} {% endfor %}
+        {% endif %} {% endfor %}
 
 
 

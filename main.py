@@ -26,7 +26,7 @@ recetas.append(recetaPrueba)
 ##Lista de posts
 posts = []
 now = datetime.now()
-StrFecha = now.strftime("%B %d, %Y %H:%M:%S")
+StrFecha = now.strftime("%B %d, %Y %H:%M")
 post1 = Post("PIZZA HAWAIANA",StrFecha,"Admin","Me gusta esta Receta")
 posts.append(post1)
 
@@ -268,7 +268,7 @@ def comentar():
             #agregar un post al arreglo de posts
             #obtener fecha sistema
             now = datetime.now()
-            StrFecha = now.strftime("%B %d, %Y %H:%M:%S")
+            StrFecha = now.strftime("%B %d, %Y  %H:%M")
             posts.append(Post(titulo,StrFecha,usuario,coment))
             return redirect(url_for("inicio"))
         else:
@@ -312,6 +312,21 @@ def deleteReceta(nombre_Receta):
             
     else:
         return redirect(url_for("login")) 
+
+@app.route('/VerReceta/<nombre_Receta>')
+def verReceta(nombre_Receta):
+    if "user" in session:
+        usuario = session["user"]
+        if usuario == "admin":
+            
+            for receta in recetas:
+                if receta.titulo == nombre_Receta:
+                    RecetaBuscada = receta   
+            
+            return render_template('verReceta.html',usuario = usuario, receta = RecetaBuscada,posts = posts)   
+            
+    else:
+        return redirect(url_for("login"))         
 
 @app.route('/ModificarReceta/<nombre_Receta>', methods = ['POST', 'GET'])
 def modReceta(nombre_Receta):

@@ -193,19 +193,31 @@
         </div>
         <hr id="comentarios">
         <div class="w3-container w3-padding-16">
-            <h5> Comentarios Por Receta</h5>
+            <h5> Comentarios </h5>
 
             {% for receta in recetas %}
-            <h1 class="w3-center w3-opacity">{{receta.tituloReceta}}</h1> {% for post in posts %} {% if post.tituloReceta == receta.titulo %}
+
+            <div class="w3-container w3-card w3-padding-16 w3-round w3-margin">
+                <h1 class="w3-center w3-opacity">{{receta.titulo}}</h1>
+            </div>
+            {% for post in posts %} {% if post.tituloReceta == receta.titulo -%}
 
             <div class="w3-container w3-card w3-padding-16 w3-round w3-margin"><br>
+
                 <img src="https://www.w3schools.com/w3images/avatar3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
                 <span class="w3-right w3-opacity">{{post.fecha}}</span>
                 <h4>{{post.usuario}}</h4><br>
                 <hr class="w3-clear">
                 <p>{{post.coment}}</p>
             </div>
-            {% endif %} {% endfor %} {% endfor %}
+
+            {% endif %} {% endfor %}
+
+            <div class="w3-container w3-card w3-round w3-margin"><br>
+                <h3 class="w3-center w3-opacity">No hay comentarios en esta receta.</h3>
+            </div>
+            {% endfor %}
+
         </div>
 
         <br>
