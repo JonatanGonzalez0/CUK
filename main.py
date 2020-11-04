@@ -319,11 +319,12 @@ def modReceta(nombre_Receta):
     
     if request.method=='POST':
         if "user" in session:
+            autor =None
             for receta in recetas:
                 if receta.titulo == nombre_Receta:
+                    autor = receta.autor
                     recetas.remove(receta)
 
-            autor = session["user"]
             titulo  = request.form['titulo']
             resumen = request.form['resumen']
             ingredientes = request.form['ingredientes']
@@ -340,15 +341,17 @@ def modReceta(nombre_Receta):
     
     if request.method =='GET':
         if "user" in session:
-            usuario = session['user']
             datosCurrentReceta = buscarReceta(nombre_Receta)
             
             autor = datosCurrentReceta[0]
             titulo = datosCurrentReceta[1]
             resumen = datosCurrentReceta[2]
-            resumen = datosCurrentReceta[2]
+            ingredientes = datosCurrentReceta[3]
+            procedimiento = datosCurrentReceta[4]
+            tiempo = datosCurrentReceta[5]
+            imagen = datosCurrentReceta[6]
 
-            return render_template('modifyUser.html')        
+            return render_template('modReceta.html',confirm = None, autor = autor, titulo = titulo, resumen = resumen , ingredientes = ingredientes, procedimiento = procedimiento, tiempo = tiempo, imagen = imagen)       
         else:
             return redirect(url_for("login"))        
 
