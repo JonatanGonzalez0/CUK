@@ -11,10 +11,16 @@ import csv
 app = Flask(__name__)
 app.secret_key = "IngenieriaUsacAdmin"
 
-#usuario maestro y arreglo de usuarios
+#Lista de usuarios
 usuarios = []
-usuarioMaestro = Usuario("admin","admin","Usuario", "Maestro",)
-usuarios.append(usuarioMaestro)
+
+#Lista de admins
+administradores = []
+usuarioMaestro = Usuario("admin","admin","Usuario","Maestro")
+usuarioMaestro2 = Usuario("JonyG","f","Jonatan","Gonzalez")
+
+administradores.append(usuarioMaestro)
+administradores.append(usuarioMaestro2)
 
 #Lista de recetas
 recetas= []
@@ -36,13 +42,21 @@ contadorDislike = 0
 contadorBad = 0
 
 #Funcion para validar login
-def validarLogin(user,password):
+def validarLoginUsuarios(user,password):
     confirm = False
     for x in usuarios:
         if x.usuario == user and x.contrasena == password: 
             confirm = True
             return confirm        
-    return confirm  
+    return confirm 
+
+def validarLoginAdmins(user,password):
+    confirma = False
+    for x in administradores:
+        if x.usuario == user and x.contrasena == password: 
+            confirma = True
+            return confirma        
+    return confirma       
 
 #Funcion verificar usuario
 def usuarioExistente(user):
@@ -68,6 +82,11 @@ def buscarUsuario(user):
         if usuariox.usuario ==user:
             datosUsuario = [usuariox.nombre,usuariox.apellido,usuariox.contrasena]
             return datosUsuario 
+def buscarUserAdmin(user):
+    for usuariox in administradores:
+        if usuariox.usuario ==user:
+            return usuariox 
+
 #funcion para buscar datos de una receta
 def buscarReceta(tit):
     for receta in recetas:
@@ -90,11 +109,11 @@ def login():
         user = request.form['username']
         contra = request.form['password']
 
-        if validarLogin(user,contra) and user== "admin" :
+        if validarLoginAdmins(user,contra) :
             error = None
             session['user'] =  user
             return redirect(url_for("Dashboard"))
-        elif validarLogin(user, contra) and user != "admin":
+        elif validarLoginUsuarios(user, contra):
             error = None
             session['user'] = user
             return redirect(url_for("inicio"))
@@ -214,11 +233,12 @@ def modificarUser():
         else:
             return redirect(url_for("login"))  
 
-@app.route('/Dashboard',methods=['POST','GET']) 
+@app.route('/Dashboard',methods=['GET']) 
 def Dashboard():
     if "user" in session:
         usuario = session["user"]
-        if usuario == "admin":
+        admin = buscarUserAdmin(usuario)
+        if admin in administradores:
             numRecetas = len(recetas)
             numUsuarios = len(usuarios)
             numComentarios = len(posts)
@@ -232,7 +252,7 @@ def Dashboard():
                 porcentDisLikes = 0
                 porcentBad = 0
             
-            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios , porcentLikes = porcentLikes, porcentDisLikes = porcentDisLikes, porcentBad = porcentBad)  
+            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios,admins = administradores, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios , porcentLikes = porcentLikes, porcentDisLikes = porcentDisLikes, porcentBad = porcentBad)  
     else:
         return redirect(url_for("login")) 
 
@@ -276,11 +296,12 @@ def comentar():
     else:
         return redirect(url_for("login")) 
         
-@app.route('/cargarRecetas',methods=['POST']) 
+@app.route('/cargarRecetas',methods=['POST','GET']) 
 def uploadFile():
     if "user" in session:
         usuario = session["user"]
-        if usuario == "admin":
+        admin = buscarUserAdmin(usuario)
+        if admin in administradores:
             if request.method == 'POST':
                 datos = request.get_json()
                 if datos['data'] == '':
@@ -302,7 +323,9 @@ def uploadFile():
 def deleteReceta(nombre_Receta):
     if "user" in session:
         usuario = session["user"]
-        if usuario == "admin":
+        admin = buscarUserAdmin(usuario)
+
+        if admin in administradores:
 
             for receta in recetas:
                 if receta.titulo == nombre_Receta:
@@ -317,13 +340,12 @@ def deleteReceta(nombre_Receta):
 def verReceta(nombre_Receta):
     if "user" in session:
         usuario = session["user"]
-        if usuario == "admin":
+        
+        for receta in recetas:
+            if receta.titulo == nombre_Receta:
+                RecetaBuscada = receta   
             
-            for receta in recetas:
-                if receta.titulo == nombre_Receta:
-                    RecetaBuscada = receta   
-            
-            return render_template('verReceta.html',usuario = usuario, receta = RecetaBuscada,posts = posts)   
+        return render_template('verReceta.html',usuario = usuario, receta = RecetaBuscada,posts = posts)   
             
     else:
         return redirect(url_for("login"))         

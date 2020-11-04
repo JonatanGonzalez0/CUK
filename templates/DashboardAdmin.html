@@ -35,7 +35,7 @@
             </div>
             <div class="w3-col s8 w3-bar">
                 <span>Bienvenido, <strong>{{usuario}}</strong></span><br>
-                <a href="Modificar" class="w3-bar-item w3-button"><i class="fa fa-cog">Editar mi perfil</i></a>
+                <a href="" class="w3-bar-item w3-button"><i class="fa fa-cog">Editar mi perfil</i></a>
             </div>
         </div>
         <hr>
@@ -173,21 +173,21 @@
             <h5>Usuarios</h5>
             <ul class="w3-ul w3-card-4 w3-white">
 
-                {% for user in usuarios %} {% if user.usuario == "admin" %}
+                {% for admin in admins %}
                 <tr>
                     <li class="w3-padding-16">
                         <img src="https://www.clipartmax.com/png/middle/319-3191274_male-avatar-admin-profile.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-                        <span class="w3-xlarge">{{user.nombre}} -- {{user.apellido}} -- {{user.usuario}} -- Rol : Administrador </span><br>
+                        <span class="w3-xlarge">{{admin.nombre}} {{admin.apellido}} [ {{admin.usuario}} ] : Administrador </span><br>
                     </li>
                 </tr>
-                {% endif %} {% if user.usuario != "admin" %}
+                {% endfor %} {% for user in usuarios %}
                 <tr>
                     <li class="w3-padding-16">
                         <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-                        <span class="w3-xlarge">{{user.nombre}} -- {{user.apellido}} -- {{user.usuario}} -- Rol : Cliente </span><br>
+                        <span class="w3-xlarge">{{user.nombre}} {{user.apellido}} [ {{user.usuario}} ] : Cliente </span><br>
                     </li>
                 </tr>
-                {% endif %} {% endfor %}
+                {% endfor %}
 
             </ul>
         </div>
@@ -198,7 +198,7 @@
             {% for receta in recetas %}
 
             <div class="w3-container w3-card w3-padding-16 w3-round w3-margin">
-                <h1 class="w3-center w3-opacity">{{receta.titulo}}</h1>
+                <h1 class="w3-center ">{{receta.titulo}}</h1>
             </div>
             {% for post in posts %} {% if post.tituloReceta == receta.titulo -%}
 
