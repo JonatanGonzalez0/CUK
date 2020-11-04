@@ -68,6 +68,12 @@ def buscarUsuario(user):
         if usuariox.usuario ==user:
             datosUsuario = [usuariox.nombre,usuariox.apellido,usuariox.contrasena]
             return datosUsuario 
+#funcion para buscar datos de una receta
+def buscarReceta(tit):
+    for receta in recetas:
+        if receta.titulo ==tit:
+            datosReceta = [receta.autor,receta.titulo,receta.resumen,receta.ingredientes,receta.procedimiento,receta.tiempo,receta.imagen]
+            return datosReceta            
 
 @app.route("/")
 def home():
@@ -288,14 +294,7 @@ def uploadFile():
                 for row in reader:
                     receta = Receta(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
                     recetas.append(receta)
-                    
-                
-                numRecetas = len(recetas)
-                numUsuarios = len(usuarios)
-                numComentarios = len(posts)
-                numReacciones = contadorLikes +  contadorDislike +  contadorBad
-                
-                return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)  
+                return redirect(url_for("Dashboard"))     
     else:
         return redirect(url_for("login")) 
 
@@ -304,19 +303,54 @@ def deleteReceta(nombre_Receta):
     if "user" in session:
         usuario = session["user"]
         if usuario == "admin":
-              
+
             for receta in recetas:
-                if receta.nombre == nombre_Receta:
+                if receta.titulo == nombre_Receta:
                     recetas.remove(receta)    
-                
-            numRecetas = len(recetas)
-            numUsuarios = len(usuarios)
-            numComentarios = len(posts)
-            numReacciones = contadorLikes +  contadorDislike +  contadorBad
-                
-            return render_template('DashboardAdmin.html', usuario = usuario , recetas = recetas, usuarios = usuarios, posts= posts, numRecetas = numRecetas, numUsuarios = numUsuarios,numReacciones = numReacciones, numComentarios = numComentarios)  
+            
+            return redirect(url_for("Dashboard"))       
+            
     else:
         return redirect(url_for("login")) 
+
+@app.route('/ModificarReceta/<nombre_Receta>')
+def modReceta(nombre_Receta):
+    confirm = None
+    
+    if request.method=='POST':
+        if "user" in session:
+            for receta in recetas:
+                if receta.titulo == nombre_Receta:
+                    recetas.remove(receta)
+
+            autor = session["user"]
+            titulo  = request.form['titulo']
+            resumen = request.form['resumen']
+            ingredientes = request.form['ingredientes']
+            procedimiento = request.form['procedimiento']
+            tiempo = request.form['tiempo']
+            imagen = request.form['imagen']
+
+            recetas.append(Receta(autor,titulo,resumen,ingredientes,procedimiento,tiempo,imagen)) 
+            confirm = 'La receta se a modificado correctamente'
+            return render_template('modReceta.html',confirm = confirm, autor = autor, titulo = titulo, resumen = resumen , ingredientes = ingredientes, procedimiento = procedimiento, tiempo = tiempo, imagen = imagen)
+
+        else:
+            return redirect(url_for("login")) 
+    
+    if request.method =='GET':
+        if "user" in session:
+            usuario = session['user']
+            datosCurrentReceta = buscarReceta(nombre_Receta)
+            
+            autor = datosCurrentReceta[0]
+            titulo = datosCurrentReceta[1]
+            resumen = datosCurrentReceta[2]
+            resumen = datosCurrentReceta[2]
+
+            return render_template('modifyUser.html')        
+        else:
+            return redirect(url_for("login"))        
 
 @app.route('/Like')          
 def reactionLike():
@@ -350,4 +384,4 @@ def DescargarReportePDF():
     flash( 'Procesando descarga')
     return redirect(url_for('Dashboard'))
 if __name__ == '__main__':
-    app.run( port = 5000,threaded = False)
+    app.run( port = 5000,debug=True)
