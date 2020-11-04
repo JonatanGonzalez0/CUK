@@ -292,7 +292,7 @@ def modificarAdmin():
             currentName = admin.nombre
             currentApellido = admin.apellido
             currentPass = admin.contrasena
-            return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = usuario, contrasena = currentPass)        
+            return render_template('modifyAdmin.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = usuario, contrasena = currentPass)        
         else:
             return redirect(url_for("login"))              
 
