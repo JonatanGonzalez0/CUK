@@ -65,12 +65,20 @@ def usuarioExistente(user):
         if usuario.usuario ==user:
             confirm = True
             return confirm
+    for admin in administradores:
+        if admin.usuario ==user:
+            confirm =True
+            return confirm        
     return confirm
 
 def deleteUsuario(user):
     for usuariox in usuarios:
         if usuariox.usuario == user:
             usuarios.remove(usuariox)
+def deleteAdmin(user):
+    for usuariox in administradores:
+        if usuariox.usuario == user:
+            usuarios.remove(usuariox)            
 
 def imprimirUsuarios():
     for usuario in usuarios:
@@ -232,6 +240,61 @@ def modificarUser():
             return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = usuario, contrasena = currentPass)        
         else:
             return redirect(url_for("login"))  
+
+
+@app.route('/ModificarAdmin',methods=['POST','GET'])
+def modificarAdmin():
+    confirm = None
+    error = None
+    if request.method=='POST':
+        if "user" in session:
+            usuario = session['user']  
+            currentUser = usuario
+    
+            userMod  = request.form['usuario']
+            nombreMod = request.form['nombre']
+            apellidoMod = request.form['apellido']
+            contrasenaMod = request.form['psw']
+            contrasena2Mod = request.form['psw-repeat']
+
+            if userMod==currentUser and contrasenaMod==contrasena2Mod:
+                
+                deleteAdmin(currentUser)
+                administradores.append(Usuario(userMod,contrasenaMod,nombreMod,apellidoMod))
+         
+                error = None
+                confirm = 'Se han modificado los datos del usuario correctamente' 
+                return render_template('modifyUser.html', confirm = confirm,error =None,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
+            if usuarioExistente(userMod)==False:
+                currentUser = session['user']
+                deleteAdmin(currentUser)
+                session.pop("user",None)   
+                newUser=Usuario(userMod,contrasenaMod,nombreMod,apellidoMod)
+
+                administradores.append(newUser)
+
+                session['user'] = userMod
+                confirm = 'Se a modificado el nombre de usuario correctamente'
+                
+                return render_template('modifyAdmin.html', confirm = confirm,error =None,nombre = nombreMod, apellido = apellidoMod , usuario = userMod, contrasena= contrasenaMod)
+            else:
+                error = 'Ya existe un usuario con ese nombre, intenta con otro'
+                    
+                return render_template('modifyAdimin.html',confirm = None,error =error,nombre = nombreMod, apellido = apellidoMod , usuario = usuario, contrasena= contrasenaMod)        
+        else:
+            return redirect(url_for("login")) 
+    
+    if request.method =='GET':
+        if "user" in session:
+            usuario = session['user']
+            admin = buscarUserAdmin(usuario)
+
+            currentName = admin.nombre
+            currentApellido = admin.apellido
+            currentPass = admin.contrasena
+            return render_template('modifyUser.html',confirm = None ,error = None,nombre = currentName, apellido = currentApellido, usuario = usuario, contrasena = currentPass)        
+        else:
+            return redirect(url_for("login"))              
 
 @app.route('/Dashboard',methods=['GET']) 
 def Dashboard():
@@ -423,5 +486,6 @@ def reactionBadlike():
 def DescargarReportePDF():
     flash( 'Procesando descarga')
     return redirect(url_for('Dashboard'))
+
 if __name__ == '__main__':
     app.run( port = 5000,debug=True)
