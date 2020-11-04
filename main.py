@@ -326,7 +326,7 @@ def Dashboard():
         admin = buscarUserAdmin(usuario)
         if admin in administradores:
             numRecetas = len(recetas)
-            numUsuarios = len(usuarios) + len(admin)
+            numUsuarios = len(usuarios) + len(administradores)
             numComentarios = len(posts)
             numReacciones = contadorLikes + contadorDislike + contadorBad
             if numReacciones != 0:
