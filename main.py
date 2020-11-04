@@ -298,7 +298,7 @@ def uploadFile():
     else:
         return redirect(url_for("login")) 
 
-@app.route('/EliminarReceta/<nombre_Receta>')
+@app.route('/EliminarReceta/<nombre_Receta>', methods = ['POST', 'GET'])
 def deleteReceta(nombre_Receta):
     if "user" in session:
         usuario = session["user"]
