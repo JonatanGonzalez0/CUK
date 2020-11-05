@@ -517,9 +517,9 @@ def DescargarRecetasPDF():
 
     responseString = pdfkit.from_string(rendered,False)
 
-    response = make_response(responseString, False)
+    response = make_response(responseString)
     response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = 'inline; filename=output.pdf'
+    response.headers['Content-Disposition'] = 'attachment; filename=reporte.pdf'
 
     return response
 
