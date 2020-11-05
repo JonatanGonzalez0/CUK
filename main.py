@@ -510,7 +510,7 @@ def reactionBadlike():
         return redirect(url_for("inicio"))                 
 
 @app.route('/DescargarRecetasePDF')
-def DescargarReportePDF():
+def DescargarRecetasPDF():
     usuario = session["user"]
 
     rendered = render_template('recetasPDF.html',recetas = recetas, usuario = usuario)
