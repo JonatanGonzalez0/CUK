@@ -527,7 +527,7 @@ def DescargarRecetasPDF():
 def DescargarUsuariosPDF():
     usuario = session["user"]
 
-    rendered = render_template('recetasPDF.html',usuarios = usuarios, usuario = usuario)
+    rendered = render_template('usuariosPDF.html',usuarios = usuarios ,administradores = administradores, usuario = usuario)
 
     responseString = pdfkit.from_string(rendered,False)
 
