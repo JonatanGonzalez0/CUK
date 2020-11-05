@@ -509,16 +509,16 @@ def reactionBadlike():
     else:
         return redirect(url_for("inicio"))                 
 
-@app.route('/DescargarRecetasePDF', methods = ['GET'] )
+@app.route('/DescargarRecetasePDF')
 def DescargarReportePDF():
     usuario = session["user"]
 
     rendered = render_template('recetasPDF.html',recetas = recetas, usuario = usuario)
 
-    pdf = pdfkit.from_string(rendered, False)
+    responseString = pdfkit.from_string(rendered,False)
 
-    response = make_response(pdf)
-    response.headers['Content-Type'] = 'aplication/pdf'
+    response = make_response(responseString, False)
+    response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = 'inline; filename=output.pdf'
 
     return response
