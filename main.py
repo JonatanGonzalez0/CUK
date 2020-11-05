@@ -519,7 +519,8 @@ def DescargarRecetasPDF():
 
     response = make_response(responseString)
     response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = 'attachment; filename=reporte.pdf'
+    response.headers['Content-Disposition'] = 'inline; filename=Recetas.pdf'
+   
 
     return response
 
