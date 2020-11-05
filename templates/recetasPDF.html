@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Recetas PDF</title>
+</head>
+
+<body>
+    <div class="w3-container">
+        <h1 class="w3-card w3-center w3-green"> Reporte de Recetas publicadas </h1>
+        <h3 class=" w3-left"> Creado por el usuario : {{usuario}}</h3><br><br><br>
+
+        <table style="width: 100%;" class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white w3-padding-64">
+            <meta http-equiv=”Content-Type” content=”text/html; charset=UTF-8″ />
+            <tr class="w3-gray">
+
+                <td style="color:white;">
+                    Titulo
+                </td>
+
+                <td style="color:white;">
+                    Autor
+                </td>
+
+                <td style="color:white;">
+                    Resumen
+                </td>
+
+                <td style="color:white;">
+                    Ingredientes
+                </td>
+
+                <td style="color:white;">
+                    Procedimiento
+                </td>
+
+                <td style="color:white;">
+                    Tiempo
+                </td>
+
+                <td style="color:white;">
+                    Imagen (Link)
+                </td>
+
+            </tr>
+
+            {% for receta in recetas %}
+            <tr>
+
+                <td style="width: 75px;">
+                    {{receta.titulo}}
+                </td>
+
+                <td style="width: 75px;">
+                    {{receta.autor}}
+                </td>
+
+                <td style="width: 50%;">
+                    {{receta.resumen}}
+                </td>
+
+                <td style="width: 200px;">
+                    {{receta.ingredientes}}
+                </td>
+
+                <td style="width: 200px;">
+                    {{receta.procedimiento}}
+                </td>
+
+                <td style="width: 75px;">
+                    {{receta.tiempo}}
+                </td>
+
+                <td style="width: 100px;">
+                    {{receta.imagen}}
+                </td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>
