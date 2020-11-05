@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash,jsonify
+from flask import Flask, render_template, request, redirect, session, url_for, flash,make_response,jsonify
 from datetime import datetime
 from Datos.Usuario import Usuario
 from Datos.Receta import Receta
@@ -7,6 +7,8 @@ from os import environ
 import json
 import base64
 import csv
+import pdfkit
+import os
 
 app = Flask(__name__)
 app.secret_key = "IngenieriaUsacAdmin"
@@ -145,6 +147,7 @@ def inicio():
     else:
         return redirect(url_for("login"))                
             
+
 @app.route('/Registro', methods=['POST', 'GET'])
 def SignUp(): 
     error = None
@@ -506,10 +509,19 @@ def reactionBadlike():
     else:
         return redirect(url_for("inicio"))                 
 
-@app.route('/DescargarReportePDF')
+@app.route('/DescargarRecetasePDF', methods = ['GET'] )
 def DescargarReportePDF():
-    flash( 'Procesando descarga')
-    return redirect(url_for('Dashboard'))
+    usuario = session["user"]
+
+    rendered = render_template('recetasPDF.html',recetas = recetas, usuario = usuario)
+
+    pdf = pdfkit.from_string(rendered, False)
+
+    response = make_response(pdf)
+    response.headers['Content-Type'] = 'aplication/pdf'
+    response.headers['Content-Disposition'] = 'inline; filename=output.pdf'
+
+    return response
 
 if __name__ == '__main__':
     app.run( port = 5000,debug=True)
