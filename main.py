@@ -520,9 +520,22 @@ def DescargarRecetasPDF():
     response = make_response(responseString)
     response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = 'inline; filename=Recetas.pdf'
-   
 
     return response
+
+@app.route('/DescargarUsuariosPDF')
+def DescargarUsuariosPDF():
+    usuario = session["user"]
+
+    rendered = render_template('recetasPDF.html',usuarios = usuarios, usuario = usuario)
+
+    responseString = pdfkit.from_string(rendered,False)
+
+    response = make_response(responseString)
+    response.headers['Content-Type'] = 'application/pdf'
+    response.headers['Content-Disposition'] = 'inline; filename=Usuarios.pdf'
+    
+    return response    
 
 if __name__ == '__main__':
     app.run( port = 5000,debug=True)
