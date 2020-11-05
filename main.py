@@ -75,10 +75,11 @@ def deleteUsuario(user):
     for usuariox in usuarios:
         if usuariox.usuario == user:
             usuarios.remove(usuariox)
+
 def deleteAdmin(user):
     for usuariox in administradores:
         if usuariox.usuario == user:
-            usuarios.remove(usuariox)            
+            administradores.remove(usuariox)            
 
 def imprimirUsuarios():
     for usuario in usuarios:
@@ -292,8 +293,8 @@ def modificarAdmin():
                 currentUser = session['user']
                 deleteAdmin(currentUser)
                 session.pop("user",None)   
+                
                 newUser=Usuario(userMod,contrasenaMod,nombreMod,apellidoMod)
-
                 administradores.append(newUser)
 
                 session['user'] = userMod
