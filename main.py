@@ -22,6 +22,8 @@ app.secret_key = "IngenieriaUsacAdmin"
 
 #Lista de usuarios
 usuarios = []
+usuarioPrueba = Usuario("PruebaUser","n123","Nombre","apellido")
+usuarios.append(usuarioPrueba)
 
 #Lista de admins
 administradores = []
@@ -52,13 +54,12 @@ contadorBad = 0
 
 #Funcion para validar login
 def validarLoginUsuarios(user,password):
-    confirm = False
+    confirma = False
     for x in usuarios:
         if x.usuario == user and x.contrasena == password: 
-            confirm = True
-            return confirm        
-    return confirm 
-
+            confirma = True
+            return confirma        
+                  
 def validarLoginAdmins(user,password):
     confirma = False
     for x in administradores:
@@ -127,13 +128,16 @@ def login():
         user = request.form['username']
         contra = request.form['password']
 
-        if validarLoginAdmins(user,contra) :
+        if validarLoginAdmins(user,contra)==True:
             error = None
             session['user'] =  user
+            print('Ingreso a dashboard admin'+ user + "  "+ contra)
             return redirect(url_for("Dashboard"))
-        elif validarLoginUsuarios(user, contra):
+        
+        if validarLoginUsuarios(user, contra)==True:
             error = None
             session['user'] = user
+            print('ingreso a inicio'+ user + "  "+ contra)
             return redirect(url_for("inicio"))
         else:
             error = 'Credenciales no validas, vuelva a intentarlo'
@@ -168,6 +172,7 @@ def SignUp():
         contrasena2 = request.form['psw-repeat']
         
         if usuarioExistente(usuario)==False and contrasena==contrasena2:
+
             usuarios.append(Usuario(usuario,contrasena,nombre,apellido))
             error = None
             confirm = 'Se a registrado el usuario'
