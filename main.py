@@ -449,10 +449,11 @@ def verReceta(nombre_Receta):
             
         return render_template('verReceta.html',usuario = usuario, receta = RecetaBuscada,posts = posts)          
     else :
+        usuario = "Invitado"
         for receta in recetas:
             if receta.titulo == nombre_Receta:
                 RecetaBuscada = receta    
-        return render_template('verReceta.html',usuario = 'Invitado', receta = RecetaBuscada,posts = posts)          
+        return render_template('verReceta.html',usuario = usaurio, receta = RecetaBuscada,posts = posts)          
 
 @app.route('/ModificarReceta/<nombre_Receta>', methods = ['POST', 'GET'])
 def modReceta(nombre_Receta):
