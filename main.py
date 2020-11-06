@@ -449,7 +449,7 @@ def verReceta(nombre_Receta):
             
         return render_template('verReceta.html',usuario = usuario, receta = RecetaBuscada,posts = posts)          
     else :
-        usuario = "Invitado"
+        usuario = 'Invitado'
         for receta in recetas:
             if receta.titulo == nombre_Receta:
                 RecetaBuscada = receta    
