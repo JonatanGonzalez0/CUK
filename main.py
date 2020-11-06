@@ -8,7 +8,14 @@ import json
 import base64
 import csv
 import pdfkit
+import subprocess
 import os
+
+WKHTMLTOPDF_CMD = subprocess.Popen(
+    ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')],
+    stdout=subprocess.PIPE).communicate()[0].strip()
+config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
+
 
 app = Flask(__name__)
 app.secret_key = "IngenieriaUsacAdmin"
@@ -515,7 +522,7 @@ def DescargarRecetasPDF():
 
     rendered = render_template('recetasPDF.html',recetas = recetas, usuario = usuario)
 
-    responseString = pdfkit.from_string(rendered,False)
+    responseString = pdfkit.from_string(rendered,False, configuration=config)
 
     response = make_response(responseString)
     response.headers['Content-Type'] = 'application/pdf'
@@ -529,7 +536,7 @@ def DescargarUsuariosPDF():
 
     rendered = render_template('usuariosPDF.html',usuarios = usuarios ,administradores = administradores, usuario = usuario)
 
-    responseString = pdfkit.from_string(rendered,False)
+    responseString = pdfkit.from_string(rendered,False, configuration=config)
 
     response = make_response(responseString)
     response.headers['Content-Type'] = 'application/pdf'
