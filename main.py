@@ -523,7 +523,7 @@ def DescargarRecetasPDF():
     rendered = render_template('recetasPDF.html',recetas = recetas, usuario = usuario)
 
     responseString = pdfkit.from_string(rendered,False, configuration=config)
-
+    #responseString = pdfkit.from_string(rendered,False)
     response = make_response(responseString)
     response.headers['Content-Type'] = 'application/pdf'
     response.headers['Content-Disposition'] = 'inline; filename=Recetas.pdf'
