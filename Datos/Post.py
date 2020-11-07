@@ -4,3 +4,4 @@ class Post:
     self.fecha = fecha
     self.usuario = usuario
     self.coment = coment
+    
