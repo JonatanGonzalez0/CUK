@@ -398,6 +398,7 @@ def comentar():
     else:
         return redirect(url_for("login")) 
         
+        
 @app.route('/cargarRecetas',methods=['POST','GET']) 
 def uploadFile():
     if "user" in session:
