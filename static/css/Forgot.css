@@ -9,9 +9,6 @@ body {
     box-sizing: border-box;
 }
 
-
-/* Add padding to containers */
-
 .container {
     margin-top: 15%;
     margin-left: 17%;
@@ -19,9 +16,6 @@ body {
     width: 60%;
     font-size: 25px;
 }
-
-
-/* Full-width input fields */
 
 input[type=text] {
     width: 75%;
@@ -39,16 +33,10 @@ input[type=text]:focus {
     padding: 25px;
 }
 
-
-/* Overwrite default styles of hr */
-
 hr {
     border: 1px solid #f1f1f1;
     margin-bottom: 25px;
 }
-
-
-/* Set a style for the submit button */
 
 .forgotbtn {
     background-color: #4CAF50;
