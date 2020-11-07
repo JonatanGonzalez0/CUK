@@ -16,3 +16,4 @@ toml==0.10.1
 Werkzeug==1.0.1
 wrapt==1.12.1
 git+git://github.com/johnfraney/wkhtmltopdf-pack.git
+
