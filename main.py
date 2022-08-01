@@ -20,6 +20,7 @@ config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
 app = Flask(__name__)
 app.secret_key = "IngenieriaUsacAdmin"
 
+
 #Lista de usuarios
 usuarios = []
 usuarioPrueba = Usuario("PruebaUser","n123","Nombre","apellido")
