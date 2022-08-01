@@ -1,3 +1,4 @@
+#imports
 from flask import Flask, render_template, request, redirect, session, url_for, flash,make_response,jsonify
 from datetime import datetime
 from Datos.Usuario import Usuario
@@ -32,7 +33,6 @@ usuarioMaestro2 = Usuario("JonyG","f","Jonatan","Gonzalez")
 
 administradores.append(usuarioMaestro)
 administradores.append(usuarioMaestro2)
-
 
 #Lista de recetas
 recetas= []
