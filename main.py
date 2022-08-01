@@ -17,7 +17,6 @@ WKHTMLTOPDF_CMD = subprocess.Popen(
     stdout=subprocess.PIPE).communicate()[0].strip()
 config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
 
-
 app = Flask(__name__)
 app.secret_key = "IngenieriaUsacAdmin"
 
