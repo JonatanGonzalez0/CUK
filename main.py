@@ -33,6 +33,7 @@ usuarioMaestro2 = Usuario("JonyG","f","Jonatan","Gonzalez")
 administradores.append(usuarioMaestro)
 administradores.append(usuarioMaestro2)
 
+
 #Lista de recetas
 recetas= []
 recetaPrueba = Receta("Jonatan","Sandwitch Americano","Elaboracion de un Sandwitch americano con ingredientes frescos.","Pan , Jamon, Queso, Lechuga, Tomate","En un sartén disponer las lonchas de tocineta cortadas por la mitad y cocinar a fuego bajo hasta que suelten su grasa y queden crocantes. Cuando estén listas pasar por papel absorbente para eliminar el exceso de grasa. Aparte en otro sartén, derretir un poco de mantequilla y añadir las rodajas de pan, dorar por ambos lados. ","20 min","https://www.hogar.mapfre.es/media/2019/02/sandwich-americano.jpg")
